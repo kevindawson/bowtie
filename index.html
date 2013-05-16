@@ -164,17 +164,15 @@ Lets start with the changes and inspiration.</p>
 <p>And some new features.
 Add command line option to show dual-line module versions as well.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>midgen --dual_life
-</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>midgen --dual_life
+</code></pre>
 
 <p>Add ability to read/write options from ~/.midgenrc</p>
 
 <p>Command line options always overwrite options from ~/.midgenrc if you have one.
 The output format uses colour to add visualization of module version number types, be that mcpan, dual-life or added distribution.</p>
 
-<p>We now use colour to help differentiate between the different module version number types, we also honour $ENV{ANSICOLORSDISABLED}</p>
+<p>We now use colour to help differentiate between the different module version number types, we also honour <strong>$ENV{ANSICOLORSDISABLED}</strong></p>
 
 <p>for sample output see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a></p>
 </div>
