@@ -5,11 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>App::Midgen, What is it? - The Musings of a Dyslexic Technologist</title>
+  <title>Announcing App::Midgen v0.22 - The Musings of a Dyslexic Technologist</title>
   <meta name="author" content="kevin dawson">
 
   
-  <meta name="description" content="This is an aid to present a packages module requirements by scanning the package, then displaying in a familiar format with the current version &hellip;">
+  <meta name="description" content="So what’s new? Switched output format type from build to mb
+Extract more from t/ and xt/ directories
+Find modules in Test::Requires blocks
+Find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen-001">
+  <link rel="canonical" href="http://kevindawson.github.io/bowtie/blog/2013/05/09/app-midgen-005">
   <link href="/bowtie/favicon.png" rel="icon">
   <link href="/bowtie/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/bowtie/atom.xml" rel="alternate" title="The Musings of a Dyslexic Technologist" type="application/atom+xml">
@@ -68,7 +71,7 @@
   
   <header>
     
-      <h1 class="entry-title">App::Midgen, What Is It?</h1>
+      <h1 class="entry-title">Announcing App::Midgen v0.22</h1>
     
     
       <p class="meta">
@@ -84,44 +87,28 @@
   
 
 
-<time datetime="2013-03-11T13:59:00+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+<time datetime="2013-05-09T19:29:00+01:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This is an aid to present a packages module requirements by scanning the package, then displaying in a familiar format with the current version number from CPAN.</p>
+<div class="entry-content"><p>So what’s new?</p>
 
-<p>This started out as a way of generating the core for a Module::Install::DSL Makefile.PL, why DSL because it&rsquo;s nice and clean, so now you can generate the contents and check when you want, yes it&rsquo;s another PPI powered app.</p>
+<ul>
+<li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
+<li>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</li>
+<li>Find modules in Test::Requires blocks</li>
+<li>Find modules in use_ok BEGIN blocks</li>
+<li>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</li>
+</ul>
+
 
 <!-- more -->
 
 
-<p>All output goes to STDOUT, so you can use it as you see fit.</p>
 
-<p>CPAN Version Number Displayed</p>
-
-<ul>
-<li>NN.nnnnnn we got the current version number from CPAN (numify)</li>
-<li><strong>undef</strong> no version number returned by CPAN</li>
-<li><strong>core</strong> indicates the module is a perl core module</li>
-<li><strong>!cpan</strong> must be local, one of yours. Not in CPAN, Not in core.</li>
-</ul>
-
-
-<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
-
-<p>We also display some other info to complement the modules we have found.</p>
-
-<p>For more info and sample output see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a></p>
-
-<p>Change to the root of the package you want to scan and run</p>
-
-<pre><code>midgen [options]
-</code></pre>
-
-<p>&mdash;help &mdash;output &mdash;core &mdash;verbose &mdash;parent &mdash;mojo &mdash;noisy_children &mdash;twins &mdash;zero &mdash;debug</p>
 </div>
 
 
@@ -144,7 +131,7 @@
   
 
 
-<time datetime="2013-03-11T13:59:00+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+<time datetime="2013-05-09T19:29:00+01:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
       
 
 
@@ -159,8 +146,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/bowtie/blog/2013/04/04/app-midgen-004/" title="Previous Post: App::Midgen, update notice + some colour">&laquo; App::Midgen, update notice + some colour</a>
       
-        <a class="basic-alignment right" href="/bowtie/blog/2013/03/24/app-midgen-002/" title="Next Post: App::Midgen Take two">App::Midgen Take two &raquo;</a>
       
     </p>
   </footer>
