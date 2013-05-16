@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-16T23:39:10+01:00</updated>
+  <updated>2013-05-16T23:41:30+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[kevin dawson]]></name>
@@ -22,9 +22,7 @@
 
 <ul>
 <li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
-<li>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</li>
-<li>Find modules in Test::Requires blocks</li>
-<li>Find modules in Test::Requires blocks
+<li>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories
 ++ Find modules in Test::Requires blocks
 ** Find modules in use_ok BEGIN blocks</li>
 <li>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</li>
@@ -34,7 +32,7 @@
 <!-- more -->
 
 
-<h3>switched output format type from <strong>build</strong> to <strong>mb</strong></h3>
+<h3>Switched output format type from <strong>build</strong> to <strong>mb</strong></h3>
 
 <pre><code>midgen -f mb
 </code></pre>
