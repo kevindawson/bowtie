@@ -102,19 +102,22 @@ Lets start with the changes and inspiration.</p>
 
 <ul>
 <li>Switched to using MetaCPAN-API due to a write issue with CPAN, neilb++</li>
-<li><p>Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++</p></li>
-<li><p>spelling, re-factor option names, inspired by mauke++
-      &mdash;format change output format</p></li>
-<li><p>changed default output, no extra processing, only distribution version for modules without a version number mst++</p></li>
+<li>Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++</li>
+<li>spelling, re-factor option names, inspired by mauke++</li>
+<li><code>--format</code> <em>change output format</em></li>
+<li>changed default output, no extra processing, only distribution version for modules without a version number mst++</li>
 </ul>
 
 
-<p>if I missed anybody, sorry
-And some new features.
+<p><em>if I missed anybody, sorry</em></p>
+
+<p>And some new features.
 Add command line option to show dual-line module versions as well.</p>
 
-<pre><code>midgen --dual_life
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>midgen --dual_life
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Add ability to read/write options from ~/.midgenrc</p>
 
