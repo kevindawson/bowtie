@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-16T16:45:56+01:00</updated>
+  <updated>2013-05-16T17:02:30+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[kevin dawson]]></name>
@@ -14,10 +14,71 @@
 
   
   <entry>
-    <title type="html"><![CDATA[App::Midgen]]></title>
-    <link href="http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen/"/>
+    <title type="html"><![CDATA[App::Midgen, now with cpanfile prereqs]]></title>
+    <link href="http://kevindawson.github.io/bowtie/blog/2013/04/03/app-midgen-003/"/>
+    <updated>2013-04-03T23:32:00+01:00</updated>
+    <id>http://kevindawson.github.io/bowtie/blog/2013/04/03/app-midgen-003</id>
+    <content type="html"><![CDATA[<p>App::Midgen, now with cpanfile prereqs
+By bowtie on April 3, 2013 11:32 PM</p>
+
+<p>More features</p>
+
+<pre><code>cpanfile output format, prereqs (requires, recommends, on test, on develop)
+
+midgen -lf cfile
+
+Basic scanning of Dist-Zilla Plugins
+</code></pre>
+
+<p>here is a sample, with cpanfile and dist-zilla plugins, see wiki for more examples.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[App::Midgen Take two]]></title>
+    <link href="http://kevindawson.github.io/bowtie/blog/2013/03/24/app-midgen-002/"/>
+    <updated>2013-03-24T17:02:00+00:00</updated>
+    <id>http://kevindawson.github.io/bowtie/blog/2013/03/24/app-midgen-002</id>
+    <content type="html"><![CDATA[<p>First I would like to say a big Thank You for all the critiques I received, here and in the channels.</p>
+
+<p>App::Midgen</p>
+
+<p>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</p>
+
+<p>Now able to show dual-life modules current version number.
+Lets start with the changes and inspiration.</p>
+
+<pre><code>Switched to using MetaCPAN-API due to a write issue with CPAN, neilb++
+
+Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++
+
+spelling, re-factor option names, inspired by mauke++
+    --format change output format
+
+changed default output, no extra processing, only distribution version for modules without a version number mst++
+</code></pre>
+
+<p>if I missed anybody, sorry
+And some new features.
+Add command line option to show dual-line module versions as well.</p>
+
+<p>midgen &mdash;dual_life
+Add ability to read/write options from ~/.midgenrc</p>
+
+<p>Command line options always overwrite options from ~/.midgenrc if you have one.
+The output format uses colour to add visualization of module version number types, be that mcpan, dual-life or added distribution.</p>
+
+<p>We now use colour to help differentiate between the different module version number types, we also honour $ENV{ANSICOLORSDISABLED}</p>
+
+<p>for sample output see wiki</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[App::Midgen, What is it?]]></title>
+    <link href="http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen-001/"/>
     <updated>2013-03-11T13:59:00+00:00</updated>
-    <id>http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen</id>
+    <id>http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen-001</id>
     <content type="html"><![CDATA[<p>This is an aid to present a packages module requirements by scanning the package, then displaying in a familiar format with the current version number from CPAN.</p>
 
 <p>This started out as a way of generating the core for a Module::Install::DSL Makefile.PL, why DSL because it&rsquo;s nice and clean, so now you can generate the contents and check when you want, yes it&rsquo;s another PPI powered app.</p>

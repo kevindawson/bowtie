@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - The Musings of a Dyslexic Technologist</title>
+  <title>App::Midgen, What is it? - The Musings of a Dyslexic Technologist</title>
   <meta name="author" content="kevin dawson">
 
   
-  <meta name="description" content="Blog Archive 2013 App::Midgen, now with cpanfile prereqs
-Apr 03 2013 App::Midgen Take two
-Mar 24 2013 App::Midgen, What is it?
-Mar 11 2013 Recent &hellip;">
+  <meta name="description" content="This is an aid to present a packages module requirements by scanning the package, then displaying in a familiar format with the current version &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ Mar 11 2013 Recent &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kevindawson.github.io/bowtie/blog/archives">
+  <link rel="canonical" href="http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen-001">
   <link href="/bowtie/favicon.png" rel="icon">
   <link href="/bowtie/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/bowtie/atom.xml" rel="alternate" title="The Musings of a Dyslexic Technologist" type="application/atom+xml">
@@ -67,51 +64,102 @@ Mar 11 2013 Recent &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">App::Midgen, What Is It?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T13:59:00+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>This is an aid to present a packages module requirements by scanning the package, then displaying in a familiar format with the current version number from CPAN.</p>
 
-  
-  <h2>2013</h2>
+<p>This started out as a way of generating the core for a Module::Install::DSL Makefile.PL, why DSL because it&rsquo;s nice and clean, so now you can generate the contents and check when you want, yes it&rsquo;s another PPI powered app.</p>
 
-<article>
-  
-<h1><a href="/bowtie/blog/2013/04/03/app-midgen-003/">App::Midgen, now with cpanfile prereqs</a></h1>
-<time datetime="2013-04-03T23:32:00+01:00" pubdate><span class='month'>Apr</span> <span class='day'>03</span> <span class='year'>2013</span></time>
+<p>All output goes to STDOUT, so you can use it as you see fit.</p>
 
+<p>CPAN Version Number Displayed</p>
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/bowtie/blog/2013/03/24/app-midgen-002/">App::Midgen Take two</a></h1>
-<time datetime="2013-03-24T17:02:00+00:00" pubdate><span class='month'>Mar</span> <span class='day'>24</span> <span class='year'>2013</span></time>
+<ul>
+<li>NN.nnnnnn we got the current version number from CPAN (numify)</li>
+<li>&lsquo;undef&rsquo; no version number returned by CPAN</li>
+<li>&lsquo;core&rsquo; indicates the module is a perl core module</li>
+<li>&lsquo;!cpan&rsquo; must be local, one of yours. Not in CPAN, Not in core.</li>
+</ul>
 
 
-</article>
+<p>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</p>
 
+<p>We also display some other info to complement the modules we have found.</p>
 
+<p>For more info and sample output see wiki</p>
 
-<article>
-  
-<h1><a href="/bowtie/blog/2013/03/11/app-midgen-001/">App::Midgen, What is it?</a></h1>
-<time datetime="2013-03-11T13:59:00+00:00" pubdate><span class='month'>Mar</span> <span class='day'>11</span> <span class='year'>2013</span></time>
+<p>Change to the root of the package you want to scan and run</p>
 
+<p>midgen [options]</p>
 
-</article>
-
+<p>&mdash;help &mdash;output &mdash;core &mdash;verbose &mdash;parent &mdash;mojo &mdash;noisy_children &mdash;twins &mdash;zero &mdash;debug</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">kevin dawson</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T13:59:00+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/bowtie/blog/2013/03/24/app-midgen-002/" title="Next Post: App::Midgen Take two">App::Midgen Take two &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>
