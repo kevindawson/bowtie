@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-16T23:30:12+01:00</updated>
+  <updated>2013-05-16T23:34:23+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[kevin dawson]]></name>
@@ -24,21 +24,14 @@
 <li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
 <li>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</li>
 <li>Find modules in Test::Requires blocks</li>
-<li>Find modules in use_ok BEGIN blocks</li>
+<li>Find modules in Test::Requires blocks
+++ Find modules in Test::Requires blocks
+** Find modules in use_ok BEGIN blocks</li>
 <li>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</li>
 </ul>
 
 
 <!-- more -->
-
-
-<ul>
-<li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
-<li>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories
-<strong> Find modules in Test::Requires blocks
-</strong> Find modules in use_ok BEGIN blocks</li>
-<li>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</li>
-</ul>
 
 
 <h3>switched output format type from <strong>build</strong> to <strong>mb</strong></h3>
