@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: App-Midgen | The Musings of a Dyslexic Technologist]]></title>
+  <link href="http://kevindawson.github.io/bowtie/blog/categories/app-midgen/atom.xml" rel="self"/>
+  <link href="http://kevindawson.github.io/bowtie/"/>
+  <updated>2013-05-17T00:04:48+01:00</updated>
+  <id>http://kevindawson.github.io/bowtie/</id>
+  <author>
+    <name><![CDATA[kevin dawson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[App::Midgen, What is it?]]></title>
+    <link href="http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen-001/"/>
+    <updated>2013-03-11T13:59:00+00:00</updated>
+    <id>http://kevindawson.github.io/bowtie/blog/2013/03/11/app-midgen-001</id>
+    <content type="html"><![CDATA[<p>This is an aid to present a packages module requirements by scanning the package, then displaying in a familiar format with the current version number from CPAN.</p>
+
+<p>This started out as a way of generating the core for a Module::Install::DSL Makefile.PL, why DSL because it&rsquo;s nice and clean, so now you can generate the contents and check when you want, yes it&rsquo;s another PPI powered app.</p>
+
+<!-- more -->
+
+
+<p>All output goes to STDOUT, so you can use it as you see fit.</p>
+
+<p>CPAN Version Number Displayed</p>
+
+<ul>
+<li>NN.nnnnnn we got the current version number from CPAN (numify)</li>
+<li><strong>undef</strong> no version number returned by CPAN</li>
+<li><strong>core</strong> indicates the module is a perl core module</li>
+<li><strong>!cpan</strong> must be local, one of yours. Not in CPAN, Not in core.</li>
+</ul>
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<p>We also display some other info to complement the modules we have found.</p>
+
+<p>For more info and sample output see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a></p>
+
+<p>Change to the root of the package you want to scan and run</p>
+
+<pre><code>midgen [options]
+</code></pre>
+
+<p>&mdash;help &mdash;output &mdash;core &mdash;verbose &mdash;parent &mdash;mojo &mdash;noisy_children &mdash;twins &mdash;zero &mdash;debug</p>
+]]></content>
+  </entry>
+  
+</feed>
