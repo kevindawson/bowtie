@@ -108,6 +108,118 @@ Find &hellip;">
 <!-- more -->
 
 
+<ul>
+<li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
+<li>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories
+<strong> Find modules in Test::Requires blocks
+</strong> Find modules in use_ok BEGIN blocks</li>
+<li>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</li>
+</ul>
+
+
+<h3>switched output format type from <strong>build</strong> to <strong>mb</strong></h3>
+
+<p>&lsquo;midgen -f mb&rsquo;</p>
+
+<p>thanks for the kick azawawi++</p>
+
+<h3>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</h3>
+
+<h4>Find modules in Test::Requires blocks</h4>
+
+<p>Examples</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="s">&#39;Test::Pod&#39;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="s">&#39;Test::Extra&#39;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw[MIME::Types]</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw(IO::Handle::Util LWP::Protocol::http10)</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s">&quot;Test::Test1&quot;</span> <span class="o">=&gt;</span> <span class="s">&#39;1.01&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s">&#39;Test::Test2&#39;</span> <span class="o">=&gt;</span> <span class="mf">2.02</span><span class="p">,</span>
+</span><span class='line'> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Find modules in use_ok BEGIN blocks</h4>
+
+<p>Examples</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Term::ReadKey&#39;</span><span class="p">,</span> <span class="s">&#39;2.30&#39;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Term::ReadLine&#39;</span><span class="p">,</span> <span class="s">&#39;1.10&#39;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Fred::BloggsOne&#39;</span><span class="p">,</span> <span class="s">&#39;1.01&#39;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&quot;Fred::BloggsTwo&quot;</span><span class="p">,</span> <span class="s">&quot;2.02&quot;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Fred::BloggsThree&#39;</span><span class="p">,</span> <span class="mf">3.03</span> <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h3>
+
+<p>~/GitHub/Plack$ midgen -lf cpanfile</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>on test =&gt; sub {
+</span><span class='line'>  requires &#39;AnyEvent&#39;,       &#39;7.04&#39;;
+</span><span class='line'>  requires &#39;Data::Dumper&#39;,   &#39;2.145&#39;;
+</span><span class='line'>  requires &#39;DooBar&#39;,         &#39;!mcpan&#39;;
+</span><span class='line'>  requires &#39;Encode&#39;,         &#39;2.51&#39;;
+</span><span class='line'>  requires &#39;File::Path&#39;,     &#39;2.09&#39;;
+</span><span class='line'>  requires &#39;File::Temp&#39;,     &#39;0.2301&#39;;
+</span><span class='line'>  requires &#39;HTTP::Cookies&#39;,  &#39;6.01&#39;;
+</span><span class='line'>  requires &#39;HTTP::Error&#39;,    &#39;!mcpan&#39;;
+</span><span class='line'>  requires &#39;IO::File&#39;,       &#39;1.25&#39;;
+</span><span class='line'>  requires &#39;IO::Socket&#39;,     &#39;1.25&#39;;
+</span><span class='line'>  requires &#39;SomeModule&#39;,     &#39;!mcpan&#39;;
+</span><span class='line'>  requires &#39;Test::Requires&#39;, &#39;0.06&#39;;
+</span><span class='line'>
+</span><span class='line'>  suggests &#39;Authen::Simple::Passwd&#39;, &#39;0.6&#39;;
+</span><span class='line'>  suggests &#39;FCGI::ProcManager&#39;,      &#39;0.24&#39;;
+</span><span class='line'>  suggests &#39;HTTP::Request::AsCGI&#39;,   &#39;1.2&#39;;
+</span><span class='line'>  suggests &#39;IO::Handle::Util&#39;,       &#39;0.01&#39;;
+</span><span class='line'>  suggests &#39;LWP::Protocol::http10&#39;,  &#39;6.03&#39;;
+</span><span class='line'>  suggests &#39;Log::Dispatch&#39;,          &#39;2.39&#39;;
+</span><span class='line'>  suggests &#39;Log::Dispatch::Array&#39;,   &#39;1.001&#39;;
+</span><span class='line'>  suggests &#39;MIME::Types&#39;,            &#39;1.38&#39;;
+</span><span class='line'>};
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
