@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-16T17:10:59+01:00</updated>
+  <updated>2013-05-16T17:12:20+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[kevin dawson]]></name>
@@ -99,7 +99,7 @@ The output format uses colour to add visualization of module version number type
 
 <p>We also display some other info to complement the modules we have found.</p>
 
-<p>For more info and sample output see <a href="http://kevindawson.github.io/bowtie/kevindawson/App-Midgen/wiki">wiki</a></p>
+<p>For more info and sample output see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a></p>
 
 <p>Change to the root of the package you want to scan and run</p>
 
