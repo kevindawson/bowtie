@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-16T19:21:57+01:00</updated>
+  <updated>2013-05-16T19:25:11+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[kevin dawson]]></name>
@@ -18,19 +18,18 @@
     <link href="http://kevindawson.github.io/bowtie/blog/2013/04/03/app-midgen-003/"/>
     <updated>2013-04-03T23:32:00+01:00</updated>
     <id>http://kevindawson.github.io/bowtie/blog/2013/04/03/app-midgen-003</id>
-    <content type="html"><![CDATA[<p>App::Midgen, now with cpanfile prereqs
-By bowtie on April 3, 2013 11:32 PM</p>
+    <content type="html"><![CDATA[<h2>More features</h2>
 
-<p>More features</p>
+<h3>cpanfile output format, prereqs (requires, recommends, on test, on develop)</h3>
 
-<pre><code>cpanfile output format, prereqs (requires, recommends, on test, on develop)
+<p>   midgen -lf cfile</p>
 
-midgen -lf cfile
+<ul>
+<li>Basic scanning of Dist-Zilla Plugins</li>
+</ul>
 
-Basic scanning of Dist-Zilla Plugins
-</code></pre>
 
-<p>here is a sample, with cpanfile and dist-zilla plugins, see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a> for more examples.</p>
+<p>Here is a sample, with cpanfile and dist-zilla plugins, see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a> for more examples.</p>
 ]]></content>
   </entry>
   
@@ -48,22 +47,23 @@ Basic scanning of Dist-Zilla Plugins
 <p>Now able to show dual-life modules current version number.
 Lets start with the changes and inspiration.</p>
 
-<pre><code>Switched to using MetaCPAN-API due to a write issue with CPAN, neilb++
+<ul>
+<li>Switched to using MetaCPAN-API due to a write issue with CPAN, neilb++</li>
+<li><p>Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++</p></li>
+<li><p>spelling, re-factor option names, inspired by mauke++
+      &mdash;format change output format</p></li>
+<li><p>changed default output, no extra processing, only distribution version for modules without a version number mst++</p></li>
+</ul>
 
-Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++
-
-spelling, re-factor option names, inspired by mauke++
-    --format change output format
-
-changed default output, no extra processing, only distribution version for modules without a version number mst++
-</code></pre>
 
 <p>if I missed anybody, sorry
 And some new features.
 Add command line option to show dual-line module versions as well.</p>
 
-<p>midgen &mdash;dual_life
-Add ability to read/write options from ~/.midgenrc</p>
+<pre><code>midgen --dual_life
+</code></pre>
+
+<p>Add ability to read/write options from ~/.midgenrc</p>
 
 <p>Command line options always overwrite options from ~/.midgenrc if you have one.
 The output format uses colour to add visualization of module version number types, be that mcpan, dual-life or added distribution.</p>

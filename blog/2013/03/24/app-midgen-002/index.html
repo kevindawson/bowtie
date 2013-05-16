@@ -100,22 +100,23 @@
 <p>Now able to show dual-life modules current version number.
 Lets start with the changes and inspiration.</p>
 
-<pre><code>Switched to using MetaCPAN-API due to a write issue with CPAN, neilb++
+<ul>
+<li>Switched to using MetaCPAN-API due to a write issue with CPAN, neilb++</li>
+<li><p>Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++</p></li>
+<li><p>spelling, re-factor option names, inspired by mauke++
+      &mdash;format change output format</p></li>
+<li><p>changed default output, no extra processing, only distribution version for modules without a version number mst++</p></li>
+</ul>
 
-Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++
-
-spelling, re-factor option names, inspired by mauke++
-    --format change output format
-
-changed default output, no extra processing, only distribution version for modules without a version number mst++
-</code></pre>
 
 <p>if I missed anybody, sorry
 And some new features.
 Add command line option to show dual-line module versions as well.</p>
 
-<p>midgen &mdash;dual_life
-Add ability to read/write options from ~/.midgenrc</p>
+<pre><code>midgen --dual_life
+</code></pre>
+
+<p>Add ability to read/write options from ~/.midgenrc</p>
 
 <p>Command line options always overwrite options from ~/.midgenrc if you have one.
 The output format uses colour to add visualization of module version number types, be that mcpan, dual-life or added distribution.</p>
