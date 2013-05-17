@@ -4,7 +4,7 @@
   <title><![CDATA[Category: midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/blog/categories/midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-17T00:58:55+01:00</updated>
+  <updated>2013-05-17T01:01:02+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[kevin dawson]]></name>
@@ -76,7 +76,8 @@ BEGIN {
 
 <h3>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h3>
 
-<p>~/GitHub/Plack$ midgen -lf cpanfile</p>
+<pre><code>~/GitHub/Plack$ midgen -lf cpanfile
+</code></pre>
 
 <p>```text
 on test => sub {</p>
