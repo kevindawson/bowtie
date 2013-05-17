@@ -4,7 +4,7 @@
   <title><![CDATA[Category: midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/blog/categories/midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-17T01:01:02+01:00</updated>
+  <updated>2013-05-17T01:56:52+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[kevin dawson]]></name>
@@ -18,7 +18,7 @@
     <link href="http://kevindawson.github.io/bowtie/blog/2013/05/09/app-midgen-005/"/>
     <updated>2013-05-09T19:29:00+01:00</updated>
     <id>http://kevindawson.github.io/bowtie/blog/2013/05/09/app-midgen-005</id>
-    <content type="html"><![CDATA[<h2>So what’s new?</h2>
+    <content type="html"><![CDATA[<h1>So what’s new?</h1>
 
 <ul>
 <li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
@@ -36,18 +36,18 @@
 <!-- more -->
 
 
-<h3>Switched output format type from <strong>build</strong> to <strong>mb</strong></h3>
+<h2>Switched output format type from <strong>build</strong> to <strong>mb</strong></h2>
 
 <pre><code>midgen -f mb
 </code></pre>
 
 <p>thanks for the kick azawawi++</p>
 
-<h3>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</h3>
+<h2>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</h2>
 
-<h4>Find modules in Test::Requires blocks</h4>
+<h3>Find modules in Test::Requires blocks</h3>
 
-<p>Examples</p>
+<h4>Examples</h4>
 
 <p><code>perl
 use Test::Requires { 'Test::Pod' =&gt; 1.46 };
@@ -60,9 +60,9 @@ use Test::Requires {
  };
 </code></p>
 
-<h4>Find modules in use_ok BEGIN blocks</h4>
+<h3>Find modules in use_ok BEGIN blocks</h3>
 
-<p>Examples</p>
+<h4>Examples</h4>
 
 <p><code>perl
 BEGIN {
