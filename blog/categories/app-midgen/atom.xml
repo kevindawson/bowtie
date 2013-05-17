@@ -4,7 +4,7 @@
   <title><![CDATA[Category: App-Midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/blog/categories/app-midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-17T10:27:23+01:00</updated>
+  <updated>2013-05-17T14:21:21+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -47,66 +47,54 @@
 
 <h3>Find modules in Test::Requires blocks</h3>
 
-<h4>Examples</h4>
+<h4>Example</h4>
 
-<p><code>perl
-use Test::Requires { 'Test::Pod' =&gt; 1.46 };
-use Test::Requires { 'Test::Extra' =&gt; 1.46 };
-use Test::Requires qw[MIME::Types];
-use Test::Requires qw(IO::Handle::Util LWP::Protocol::http10);
-use Test::Requires {
-  "Test::Test1" =&gt; '1.01',
-  'Test::Test2' =&gt; 2.02,
- };
-</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of Test::Requires </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Pod</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Extra</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw[MIME::Types]</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw(IO::Handle::Util LWP::Protocol::http10)</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span>
+</span><span class='line'>  <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test1</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'>  <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test2</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">2.02</span><span class="p">,</span>
+</span><span class='line'>  <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>Find modules in use_ok BEGIN blocks</h3>
 
-<h4>Examples</h4>
+<h4>Example</h4>
 
-<p><code>perl
-BEGIN {
-  use_ok( 'Term::ReadKey', '2.30' );
-  use_ok( 'Term::ReadLine', '1.10' );
-  use_ok( 'Fred::BloggsOne', '1.01' );
-  use_ok( "Fred::BloggsTwo", "2.02" );
-  use_ok( 'Fred::BloggsThree', 3.03 );
-}
-</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of ues_ok in BEGIN block </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadKey</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">2.30</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadLine</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.10</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsOne</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsTwo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mf">2.02</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsThree</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="mf">3.03</span> <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h3>
 
 <pre><code>~/GitHub/Plack$ midgen -lf cpanfile
 </code></pre>
 
-<p>```text
-on test => sub {</p>
-
-<pre><code>requires 'AnyEvent',       '7.04';
-requires 'Data::Dumper',   '2.145';
-requires 'DooBar',         '!mcpan';
-requires 'Encode',         '2.51';
-requires 'File::Path',     '2.09';
-requires 'File::Temp',     '0.2301';
-requires 'HTTP::Cookies',  '6.01';
-requires 'HTTP::Error',    '!mcpan';
-requires 'IO::File',       '1.25';
-requires 'IO::Socket',     '1.25';
-requires 'SomeModule',     '!mcpan';
-requires 'Test::Requires', '0.06';
-
-suggests 'Authen::Simple::Passwd', '0.6';
-suggests 'FCGI::ProcManager',      '0.24';
-suggests 'HTTP::Request::AsCGI',   '1.2';
-suggests 'IO::Handle::Util',       '0.01';
-suggests 'LWP::Protocol::http10',  '6.03';
-suggests 'Log::Dispatch',          '2.39';
-suggests 'Log::Dispatch::Array',   '1.001';
-suggests 'MIME::Types',            '1.38';
-</code></pre>
-
-<p>};
-```</p>
+<p><img src="/images/005-example-03.png"></p>
 ]]></content>
   </entry>
   
