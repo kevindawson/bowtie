@@ -4,7 +4,7 @@
   <title><![CDATA[Category: App-Midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/blog/categories/app-midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-17T14:21:21+01:00</updated>
+  <updated>2013-05-17T22:46:12+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -45,9 +45,11 @@
 
 <h2>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</h2>
 
-<h3>Find modules in Test::Requires blocks</h3>
+<p>We can now find the following located in your test files, then display in the revelant section in your chose output format.</p>
 
-<h4>Example</h4>
+<h4>Example 1</h4>
+
+<p>Find modules in Test::Requires blocks</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of Test::Requires </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -68,9 +70,9 @@
 </span><span class='line'>  <span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3>Find modules in use_ok BEGIN blocks</h3>
+<h4>Example 2</h4>
 
-<h4>Example</h4>
+<p>Find modules in use_ok BEGIN blocks</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of ues_ok in BEGIN block </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -89,12 +91,20 @@
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h3>
+<h2>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h2>
 
 <pre><code>~/GitHub/Plack$ midgen -lf cpanfile
 </code></pre>
 
 <p><img src="/images/005-example-03.png"></p>
+
+<ul>
+<li>The above shows <strong>requires</strong> from ( use, require, no, use_ok, &hellip; )</li>
+<li>The <strong>suggests</strong> come from ( Test::Requires )</li>
+</ul>
+
+
+<p><strong>nb</strong> <em>the !mcpan are modules from the local test framwork</em> hence they don&rsquo;t exist :)</p>
 ]]></content>
   </entry>
   
