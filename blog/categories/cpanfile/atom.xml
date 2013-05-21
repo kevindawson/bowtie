@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cpanfile | The Musings of a Dyslexic Technologist]]></title>
+  <link href="http://kevindawson.github.io/bowtie/blog/categories/cpanfile/atom.xml" rel="self"/>
+  <link href="http://kevindawson.github.io/bowtie/"/>
+  <updated>2013-05-21T13:44:06+01:00</updated>
+  <id>http://kevindawson.github.io/bowtie/</id>
+  <author>
+    <name><![CDATA[bowtie]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[App::Midgen, now with cpanfile prereqs]]></title>
+    <link href="http://kevindawson.github.io/bowtie/blog/2013/04/03/app-midgen-003/"/>
+    <updated>2013-04-03T23:32:00+01:00</updated>
+    <id>http://kevindawson.github.io/bowtie/blog/2013/04/03/app-midgen-003</id>
+    <content type="html"><![CDATA[<h3>More features</h3>
+
+<p><strong>cpanfile output format, prereqs (requires, recommends, on test, on develop)</strong></p>
+
+<pre><code>midgen -lf cfile
+</code></pre>
+
+<ul>
+<li>Basic scanning of Dist-Zilla Plugins</li>
+</ul>
+
+
+<p>Here is a sample, <a href="https://github.com/kevindawson/App-Midgen/wiki/Milla">with cpanfile and dist-zilla plugins</a>, see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a> for more examples.</p>
+]]></content>
+  </entry>
+  
+</feed>
