@@ -108,9 +108,9 @@ Calendar.prototype.generateHTML = function(id) {
   }
   var html = '<table id="'+id+'-calendar-table" class="calendar-table">';
   html += '<tr><th colspan="7">';
-  html += '<a id="'+this.id+'-prev-calendar-link" class="prev-link" style="height:25px;width:25px" href="#" onclick="monthCalendar(\''+this.guid+'\','+prevYear+','+prevMonth+');return false;" ><img class="prevCalendarLink" style="height:25px;width:25px;border:none 0px;padding-top:2px" src="/bowtie/images/prev.png"></img></a>';
+  html += '<a id="'+this.id+'-prev-calendar-link" class="prev-link" style="height:25px;width:25px" href="#" onclick="monthCalendar(\''+this.guid+'\','+prevYear+','+prevMonth+');return false;" ><img class="prevCalendarLink" style="height:25px;width:25px;border:none 0px;padding-top:2px" src="/images/prev.png"></img></a>';
   html +=  monthName + "&nbsp;" + this.year;
-  html += '<a id="'+this.id+'-next-calendar-link" class="next-link" style="height:25px;width:25px" href="#" onclick="monthCalendar(\''+this.guid+'\','+nextYear+','+nextMonth+');return false;"><img class="nextCalendarLink"  style="height:25px;width:25px;border:none 0px;padding-top:2px" src="/bowtie/images/next.png"></img></a>';
+  html += '<a id="'+this.id+'-next-calendar-link" class="next-link" style="height:25px;width:25px" href="#" onclick="monthCalendar(\''+this.guid+'\','+nextYear+','+nextMonth+');return false;"><img class="nextCalendarLink"  style="height:25px;width:25px;border:none 0px;padding-top:2px" src="/images/next.png"></img></a>';
   html += '</th></tr>';
   html += '<tr class="calendar-header">';
   for(var i = 0; i <= 6; i++ ){
