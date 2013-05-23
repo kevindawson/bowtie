@@ -27,10 +27,28 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/bowtie/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<!--
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+--!>
+
+<!-- 
+ --!>
 
   
+<script id="search-results-template" type="text/x-handlebars-template">
+  {{#entries}}
+    <article>
+      <h3>
+         <small><time datetime="{{date}}" pubdate>{{date}}</time></small>
+         <a href="{{url}}">{{title}}</a>
+         <p>tagged: {{ tags }} | category: <a href="/categories/{{category }}">{{category}}</a></p>
+      </h3>
+    </article>
+  {{/entries}}
+</script>
+
 
 </head>
 
@@ -47,14 +65,11 @@
   <li><a href="/bowtie/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
+
   
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:kevindawson.github.io/bowtie" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
+
+
+
 <ul class="main-navigation">
   <li><a href="/bowtie/">Blog</a></li>
   <li><a href="/bowtie/archives">Archives</a></li>
@@ -97,12 +112,12 @@
 <pre><code>midgen -f cpanfile
 </code></pre>
 
-<p>thanks for the kick Miyagawa++</p>
+<p>Thanks for the kick Miyagawa++</p>
 
 <!-- more -->
 
 
-<p>nb, if you have written an <code>.midgenrc</code> file suggest you either edit it or delete it and start again, opps.</p>
+<p>NB, if you have written an <code>.midgenrc</code> file suggest you either edit it or delete it and start again, opps.</p>
 
 <p>Thought I would show you all the colour</p>
 

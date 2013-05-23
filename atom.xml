@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-23T02:46:31+01:00</updated>
+  <updated>2013-05-23T20:20:35+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -18,7 +18,7 @@
     <link href="http://kevindawson.github.io/bowtie/2013/05/09/app-midgen-005/"/>
     <updated>2013-05-09T19:29:00+01:00</updated>
     <id>http://kevindawson.github.io/bowtie/2013/05/09/app-midgen-005</id>
-    <content type="html"><![CDATA[<h1>So what’s new?</h1>
+    <content type="html"><![CDATA[<h2>So what’s new?</h2>
 
 <ul>
 <li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
@@ -36,20 +36,20 @@
 <!-- more -->
 
 
-<h2>Switched output format type from <strong>build</strong> to <strong>mb</strong></h2>
+<h3>Switched output format type from <strong>build</strong> to <strong>mb</strong></h3>
 
 <pre><code>midgen -f mb
 </code></pre>
 
-<p>thanks for the kick azawawi++</p>
+<p>Thanks for the kick azawawi++</p>
 
-<h2>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</h2>
+<h3>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</h3>
 
 <p>We can now find the following located in your test files, then display in the revelant section in your chose output format.</p>
 
-<h4>Example 1</h4>
+<h4>Find modules in <strong>Test::Requires</strong> blocks</h4>
 
-<p>Find modules in Test::Requires blocks</p>
+<p>Example 1</p>
 
 <figure class='code'><figcaption><span>Here&#8217;s a selection of Test::Requires </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -71,9 +71,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Example 2</h4>
+<h4>Find modules in <strong>use_ok</strong> BEGIN blocks</h4>
 
-<p>Find modules in use_ok BEGIN blocks</p>
+<p>Example 2</p>
 
 <figure class='code'><figcaption><span>Here&#8217;s a selection of ues_ok in BEGIN block </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -93,7 +93,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h2>
+<h3>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h3>
 
 <pre><code>~/GitHub/Plack$ midgen -lf cpanfile
 </code></pre>
@@ -120,12 +120,12 @@
 <pre><code>midgen -f cpanfile
 </code></pre>
 
-<p>thanks for the kick Miyagawa++</p>
+<p>Thanks for the kick Miyagawa++</p>
 
 <!-- more -->
 
 
-<p>nb, if you have written an <code>.midgenrc</code> file suggest you either edit it or delete it and start again, opps.</p>
+<p>NB, if you have written an <code>.midgenrc</code> file suggest you either edit it or delete it and start again, opps.</p>
 
 <p>Thought I would show you all the colour</p>
 
@@ -147,7 +147,7 @@
     <link href="http://kevindawson.github.io/bowtie/2013/04/03/app-midgen-003/"/>
     <updated>2013-04-03T23:32:00+01:00</updated>
     <id>http://kevindawson.github.io/bowtie/2013/04/03/app-midgen-003</id>
-    <content type="html"><![CDATA[<h3>More features</h3>
+    <content type="html"><![CDATA[<h2>More features</h2>
 
 <p><strong>cpanfile output format, prereqs (requires, recommends, on test, on develop)</strong></p>
 
