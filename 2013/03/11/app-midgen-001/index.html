@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>App::Midgen, What is it? - The Musings of a Dyslexic Technologist</title>
+  <meta name="author" content="bowtie">
+
+  
+  <meta name="description" content="App::Midgen, What is it?">
+  <meta name="keywords" content="App::Midgen,midgen">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kevindawson.github.io/bowtie/2013/03/11/app-midgen-001">
+  <link href="/bowtie/favicon.png" rel="icon">
+  <link href="/bowtie/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/bowtie/atom.xml" rel="alternate" title="The Musings of a Dyslexic Technologist" type="application/atom+xml">
+  <script src="/bowtie/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/bowtie/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+  <h1><a href="/bowtie/">The Musings of a Dyslexic Technologist</a></h1>
+  
+    <h2>A blogging framework for bowtie.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/bowtie/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:kevindawson.github.io/bowtie" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/bowtie/">Blog</a></li>
+  <li><a href="/bowtie/archives">Archives</a></li>
+  <li><a href="https://metacpan.org/author/BOWTIE">MetaCPAN</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">App::Midgen, What Is It?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T13:59:00+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This is an aid to present a packages module requirements by scanning the package, then displaying in a familiar format with the current version number from CPAN.</p>
+
+<p>This started out as a way of generating the core for a Module::Install::DSL Makefile.PL, why DSL because it&rsquo;s nice and clean, so now you can generate the contents and check when you want, yes it&rsquo;s another PPI powered app.</p>
+
+<!-- more -->
+
+
+<p>All output goes to STDOUT, so you can use it as you see fit.</p>
+
+<p>CPAN Version Number Displayed</p>
+
+<ul>
+<li>NN.nnnnnn we got the current version number from CPAN (numify)</li>
+<li><strong>undef</strong> no version number returned by CPAN</li>
+<li><strong>core</strong> indicates the module is a perl core module</li>
+<li><strong>!cpan</strong> must be local, one of yours. Not in CPAN, Not in core.</li>
+</ul>
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<p>We also display some other info to complement the modules we have found.</p>
+
+<p>For more info and sample output see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a></p>
+
+<p>Change to the root of the package you want to scan and run</p>
+
+<pre><code>midgen [options]
+</code></pre>
+
+<p>&mdash;help &mdash;output &mdash;core &mdash;verbose &mdash;parent &mdash;mojo &mdash;noisy_children &mdash;twins &mdash;zero &mdash;debug</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">bowtie</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T13:59:00+00:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/bowtie/categories/app-midgen/'>App::Midgen</a>, <a class='category' href='/bowtie/categories/midgen/'>midgen</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/bowtie/2013/03/24/app-midgen-002/" title="Next Post: App::Midgen Take two">App::Midgen Take two &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - bowtie -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

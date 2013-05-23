@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
-  <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
+  <title><![CDATA[Category: midgen | The Musings of a Dyslexic Technologist]]></title>
+  <link href="http://kevindawson.github.io/bowtie/categories/midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
   <updated>2013-05-23T02:46:14+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
@@ -51,7 +51,7 @@
 
 <p>Find modules in Test::Requires blocks</p>
 
-<figure class='code'><figcaption><span>Here&#8217;s a selection of Test::Requires </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of Test::Requires </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -60,22 +60,21 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="s">&#39;Test::Pod&#39;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="s">&#39;Test::Extra&#39;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Pod</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Extra</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
 </span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw[MIME::Types]</span><span class="p">;</span>
 </span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw(IO::Handle::Util LWP::Protocol::http10)</span><span class="p">;</span>
 </span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span>
-</span><span class='line'>  <span class="s">&quot;Test::Test1&quot;</span> <span class="o">=&gt;</span> <span class="s">&#39;1.01&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s">&#39;Test::Test2&#39;</span> <span class="o">=&gt;</span> <span class="mf">2.02</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test1</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'>  <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test2</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">2.02</span><span class="p">,</span>
 </span><span class='line'>  <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h4>Example 2</h4>
 
 <p>Find modules in use_ok BEGIN blocks</p>
 
-<figure class='code'><figcaption><span>Here&#8217;s a selection of ues_ok in BEGIN block </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of ues_ok in BEGIN block </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -84,21 +83,20 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Term::ReadKey&#39;</span><span class="p">,</span> <span class="s">&#39;2.30&#39;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Term::ReadLine&#39;</span><span class="p">,</span> <span class="s">&#39;1.10&#39;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Fred::BloggsOne&#39;</span><span class="p">,</span> <span class="s">&#39;1.01&#39;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&quot;Fred::BloggsTwo&quot;</span><span class="p">,</span> <span class="s">&quot;2.02&quot;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="s">&#39;Fred::BloggsThree&#39;</span><span class="p">,</span> <span class="mf">3.03</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadKey</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">2.30</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadLine</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.10</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsOne</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsTwo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mf">2.02</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="p">);</span>
+</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsThree</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="mf">3.03</span> <span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h2>
 
 <pre><code>~/GitHub/Plack$ midgen -lf cpanfile
 </code></pre>
 
-<p><img src="http://kevindawson.github.io/bowtie/images/005-example-03.png"></p>
+<p><img src="/images/005-example-03.png"></p>
 
 <ul>
 <li>The above shows <strong>requires</strong> from ( use, require, no, use_ok, &hellip; )</li>
@@ -136,7 +134,7 @@
 </ul>
 
 
-<p><img src="http://kevindawson.github.io/bowtie/images/midgen_001.png"></p>
+<p><img src="/images/midgen_001.png"></p>
 
 <p>All version numbers from MetaCPAN</p>
 ]]></content>
