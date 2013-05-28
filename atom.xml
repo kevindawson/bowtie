@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-05-24T10:50:52+01:00</updated>
+  <updated>2013-05-28T19:05:35+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -106,7 +106,7 @@
 </ul>
 
 
-<p><strong>nb</strong> <em>the !mcpan are modules from the local test framwork</em> hence they don&rsquo;t exist :)</p>
+<p><strong>nb</strong> <em>the !mcpan are modules from the local test framework</em> hence they don&rsquo;t exist :)</p>
 ]]></content>
   </entry>
   
