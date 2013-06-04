@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | The Musings of a Dyslexic Technologist]]></title>
+  <link href="http://kevindawson.github.io/bowtie/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://kevindawson.github.io/bowtie/"/>
+  <updated>2013-06-04T22:02:06+01:00</updated>
+  <id>http://kevindawson.github.io/bowtie/</id>
+  <author>
+    <name><![CDATA[bowtie]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 001]]></title>
+    <link href="http://kevindawson.github.io/bowtie/2013/02/02/octopress-001/"/>
+    <updated>2013-02-02T02:02:00+00:00</updated>
+    <id>http://kevindawson.github.io/bowtie/2013/02/02/octopress-001</id>
+    <content type="html"><![CDATA[<h2>Octopress my hacks</h2>
+
+<p>A reminder of what I hacked, and where it came from :)</p>
+
+<!-- more -->
+
+
+<h3>Links</h3>
+
+<ul>
+<li><a href="http://anchetawern.github.io/blog/2012/11/29/customizing-octopress/">Customizing Octopress</a></li>
+<li><a href="http://blog.jphpsf.com/2012/06/12/squeezing-octopress-for-faster-load-times">Squeezing Octopress for Faster Load Times</a></li>
+<li><a href="http://blog.orenyk.com/2013/03/08/fixing-my-octopress-config-links/">Fixing my octopress Config Links</a></li>
+<li><a href="http://blog.bigdinosaur.org/using-at-font-face-with-octopress/">Using @font-face With Octopress</a></li>
+<li><a href="http://blog.bigdinosaur.org/gzipping-at-font-face-with-nginx/">Gzipping @font-face With Nginx</a></li>
+<li><a href="http://www.dotnetguy.co.uk/post/2012/06/25/octopress-category-list-plugin/">Category List Plug-in</a></li>
+<li><a href="http://learnaholic.me/2012/10/15/octopress-seo-and-disabling-the-blog-route/">SEO and Disabling the Blog Route</a></li>
+<li><a href="http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/">Remove Redundant /blog Prefix From Octopress Website</a></li>
+<li><a href="http://www.yatishmehta.in/seo-for-octopress">SEO for Octopress</a></li>
+<li><p><a href="http://time.to.pullthepl.ug/blog/2012/8/20/octopress-top-categories-plugin/">Top Categories Plugin</a></p></li>
+<li><p>Octopress</p>
+
+<ul>
+<li><a href="http://octopress.org/docs/theme/styles/">Styles</a></li>
+<li><a href="http://octopress.org/docs/updating/">Updating</a></li>
+</ul>
+</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

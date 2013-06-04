@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Announcing App::Midgen v0.24 - The Musings of a Dyslexic Technologist</title>
+  <meta name="author" content="bowtie">
+
+  
+  <meta name="description" content="Announcing App::Midgen v0.22">
+  <meta name="keywords" content="App::Midgen,midgen,PPI::XS,Perl::MinimumVersion::Fast,Type::Tiny">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kevindawson.github.io/bowtie/2013/06/04/app-midgen-006">
+  <link href="/bowtie/favicon.png" rel="icon">
+  <link href="/bowtie/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/bowtie/atom.xml" rel="alternate" title="The Musings of a Dyslexic Technologist" type="application/atom+xml">
+  <script src="/bowtie/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/bowtie/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<!--
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+--!>
+
+<!-- 
+ --!>
+
+  
+<script id="search-results-template" type="text/x-handlebars-template">
+  {{#entries}}
+    <article>
+      <h3>
+         <small><time datetime="{{date}}" pubdate>{{date}}</time></small>
+         <a href="{{url}}">{{title}}</a>
+         <p>tagged: {{ tags }} | category: <a href="/categories/{{category }}">{{category}}</a></p>
+      </h3>
+    </article>
+  {{/entries}}
+</script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+  <h1><a href="/bowtie/">The Musings of a Dyslexic Technologist</a></h1>
+  
+    <h2>A blogging framework for bowtie.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/bowtie/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+  
+
+
+
+<ul class="main-navigation">
+  <li><a href="/bowtie/">Blog</a></li>
+  <li><a href="/bowtie/archives">Archives</a></li>
+  <li><a href="https://metacpan.org/author/BOWTIE">MetaCPAN</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Announcing App::Midgen v0.24</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-04T18:18:00+01:00" pubdate data-updated="true">Jun 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>So what’s new?</h2>
+
+<ul>
+<li>Some extra speed taking advantage of some new developments in:
+
+<ul>
+<li>PPI::XS</li>
+<li>Perl::MinimumVersion::Fast</li>
+</ul>
+</li>
+<li>Re-factor the Output formats to composed Roles</li>
+<li>Start of conversion to Type::Tiny</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>Some extra speed taking advantage of some new developments in:</h3>
+
+<h4>PPI::XS</h4>
+
+<p>Now that PPI-XS has been updated (Fix &ldquo;defined @array&rdquo; deprecation warning) DAGOLDEN++. We can turn off the noise suppression and add it as a dependency if your OS <code>can_cc</code>. Not much of a boost but anything here is a benefit.</p>
+
+<h4>Perl::MinimumVersion::Fast</h4>
+
+<p>Perl::MinimumVersion::Fast TOKUHIROM++ is built on top of Compiler::Lexer GOCCY++, this is <strong>quick</strong>. This enables us to check all perl modules rather than the subset we extract when looking for a Package Name. Due to it being such a cool new module, we will fall back to Perl::MinimumVersion if your OS <code>!can_cc</code>.</p>
+
+<h3>Re-factor the Output formats to Composed Roles</h3>
+
+<p>Inspired by the Composed Method Theory, I thought why not have a Composed Role, for the output formats, with each format type being a separate Role, so I did.</p>
+
+<figure class='code'><figcaption><span>Output Format Composed Roles </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span><span class='line'><span class="n">with</span> <span class="sx">qw(</span>
+</span><span class='line'><span class="sx"> App::Midgen::Role::Output::MIdsl</span>
+</span><span class='line'><span class="sx"> App::Midgen::Role::Output::MI</span>
+</span><span class='line'><span class="sx"> App::Midgen::Role::Output::MB</span>
+</span><span class='line'><span class="sx"> App::Midgen::Role::Output::Dzil</span>
+</span><span class='line'><span class="sx"> App::Midgen::Role::Output::Dist</span>
+</span><span class='line'><span class="sx"> App::Midgen::Role::Output::CPANfile</span>
+</span><span class='line'><span class="sx">)</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Start of conversion to Type::Tiny</h3>
+
+<p>Why, one so I can have a consistent Type system regardless of Moose or Moo, two it&rsquo;s faster.
+The first part of the conversion from MooX::Types::MooseLike to Type::Tiny</p>
+
+<p>So we have gone from this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">MooX::Types::MooseLike::</span><span class="n">Base</span> <span class="sx">qw(:all)</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Types::</span><span class="n">Standard</span> <span class="sx">qw( ArrayRef Bool Int Object Str)</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Many thanks to TOBYINK along the way, the final part will happen soon.</p>
+
+<p><code>__END__</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">bowtie</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-04T18:18:00+01:00" pubdate data-updated="true">Jun 4<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/bowtie/categories/app-midgen/'>App::Midgen</a>, <a class='category' href='/bowtie/categories/ppi-xs/'>PPI::XS</a>, <a class='category' href='/bowtie/categories/perl-minimumversion-fast/'>Perl::MinimumVersion::Fast</a>, <a class='category' href='/bowtie/categories/type-tiny/'>Type::Tiny</a>, <a class='category' href='/bowtie/categories/midgen/'>midgen</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/bowtie/2013/05/09/app-midgen-005/" title="Previous Post: Announcing App::Midgen v0.22">&laquo; Announcing App::Midgen v0.22</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - bowtie -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: PPI::XS | The Musings of a Dyslexic Technologist]]></title>
+  <link href="http://kevindawson.github.io/bowtie/categories/ppi-xs/atom.xml" rel="self"/>
+  <link href="http://kevindawson.github.io/bowtie/"/>
+  <updated>2013-06-04T22:02:06+01:00</updated>
+  <id>http://kevindawson.github.io/bowtie/</id>
+  <author>
+    <name><![CDATA[bowtie]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Announcing App::Midgen v0.24]]></title>
+    <link href="http://kevindawson.github.io/bowtie/2013/06/04/app-midgen-006/"/>
+    <updated>2013-06-04T18:18:00+01:00</updated>
+    <id>http://kevindawson.github.io/bowtie/2013/06/04/app-midgen-006</id>
+    <content type="html"><![CDATA[<h2>So what’s new?</h2>
+
+<ul>
+<li>Some extra speed taking advantage of some new developments in:
+
+<ul>
+<li>PPI::XS</li>
+<li>Perl::MinimumVersion::Fast</li>
+</ul>
+</li>
+<li>Re-factor the Output formats to composed Roles</li>
+<li>Start of conversion to Type::Tiny</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>Some extra speed taking advantage of some new developments in:</h3>
+
+<h4>PPI::XS</h4>
+
+<p>Now that PPI-XS has been updated (Fix &ldquo;defined @array&rdquo; deprecation warning) DAGOLDEN++. We can turn off the noise suppression and add it as a dependency if your OS <code>can_cc</code>. Not much of a boost but anything here is a benefit.</p>
+
+<h4>Perl::MinimumVersion::Fast</h4>
+
+<p>Perl::MinimumVersion::Fast TOKUHIROM++ is built on top of Compiler::Lexer GOCCY++, this is <strong>quick</strong>. This enables us to check all perl modules rather than the subset we extract when looking for a Package Name. Due to it being such a cool new module, we will fall back to Perl::MinimumVersion if your OS <code>!can_cc</code>.</p>
+
+<h3>Re-factor the Output formats to Composed Roles</h3>
+
+<p>Inspired by the Composed Method Theory, I thought why not have a Composed Role, for the output formats, with each format type being a separate Role, so I did.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format Composed Roles </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span><span class='line'><span class="n">with</span> <span class="sx">qw(&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">&lt;pre&gt;&lt;code&gt;App::Midgen::Role::Output::MIdsl</span>
+</span><span class='line'><span class="sx">App::Midgen::Role::Output::MI</span>
+</span><span class='line'><span class="sx">App::Midgen::Role::Output::MB</span>
+</span><span class='line'><span class="sx">App::Midgen::Role::Output::Dzil</span>
+</span><span class='line'><span class="sx">App::Midgen::Role::Output::Dist</span>
+</span><span class='line'><span class="sx">App::Midgen::Role::Output::CPANfile</span>
+</span><span class='line'><span class="sx">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">&lt;p&gt;)</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Start of conversion to Type::Tiny</h3>
+
+<p>Why, one so I can have a consistent Type system regardless of Moose or Moo, two it&rsquo;s faster.
+The first part of the conversion from MooX::Types::MooseLike to Type::Tiny</p>
+
+<p>So we have gone from this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">MooX::Types::MooseLike::</span><span class="n">Base</span> <span class="sx">qw(:all)</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>To this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Types::</span><span class="n">Standard</span> <span class="sx">qw( ArrayRef Bool Int Object Str)</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Many thanks to TOBYINK along the way, the final part will happen soon.</p>
+
+<p><code>__END__</code></p>
+]]></content>
+  </entry>
+  
+</feed>
