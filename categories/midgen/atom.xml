@@ -4,7 +4,7 @@
   <title><![CDATA[Category: midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-07-11T13:00:35+01:00</updated>
+  <updated>2013-07-28T17:30:00+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -12,6 +12,178 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Announcing App::Midgen v0.26]]></title>
+    <link href="http://kevindawson.github.io/bowtie/2013/07/25/app-midgen-007/"/>
+    <updated>2013-07-25T14:40:00+01:00</updated>
+    <id>http://kevindawson.github.io/bowtie/2013/07/25/app-midgen-007</id>
+    <content type="html"><![CDATA[<h2>So what’s new?</h2>
+
+<ul>
+<li>Added Two more output formats:
+
+<ul>
+<li>infile, output format, module v perl files they were Found in</li>
+<li>metajson, output format META.json</li>
+</ul>
+</li>
+<li>Internal scanner update and why</li>
+<li>Finish off conversion to Type::Tiny fred</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<h3>Two new output formats:</h3>
+
+<h4>infile</h4>
+
+<p>The following was conceived to provided a solution to <a href="https://rt.cpan.org/Public/Bug/Display.html?id=76527">RT76527</a>.</p>
+
+<p><code>midgen --format infile</code></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format infile run against a test dist </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;hr /&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;hr /&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt; | Bar                   | 0.2      | /lib/Anamal.pm     |
+</span><span class='line'> | Carp::Always::Color   | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | Compiler::Lexer       | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | Data::Printer         | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | Foo                   | 0.123456 | /lib/Anamal.pm     |
+</span><span class='line'> | Moo                   | 1.000    | /lib/Anamal.pm     |
+</span><span class='line'> | Moo                   | 0.999    | /lib/Plugin/Dog.pm |
+</span><span class='line'> | Moo                   | 0.888    | /lib/Plugin/Cat.pm |
+</span><span class='line'> | Params::Util          | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | String::RewritePrefix | 0.005    | /lib/Anamal.pm     |
+</span><span class='line'> | Test::Mock::LWP       | 0        | /t/666-tmw.t       |
+</span><span class='line'> | Test::Mock::LWP       | 0        | /t/00.load.t       |
+</span><span class='line'> | Test::More            | 0        | /t/pod.t           |
+</span><span class='line'> | Test::More            | 0        | /t/pod-coverage.t  |
+</span><span class='line'> | Test::More            | 0        | /t/666-tmw.t       |
+</span><span class='line'> | Test::More            | 0        | /t/00.load.t       |
+</span><span class='line'> | Test::Pod             | 0        | /t/pod.t           |
+</span><span class='line'> | Test::Pod::Coverage   | 0        | /t/pod-coverage.t  |
+</span><span class='line'> | Types::Standard       | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | X                     | 0        | /lib/Anamal.pm     |&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;hr /&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>NB: this is the only output format which displays the found version string, because it just makes sense in this instance.
+Many thanks to ETHER along the way.</p>
+
+<h4>metajson</h4>
+
+<p>The following is what midgen thinks your <a href="https://metacpan.org/module/CPAN::Meta::Spec#Prereq-Spec">META.json</a> might contain based upon your dist, or in this case a test dist.</p>
+
+<p><code>midgen --format metajson</code></p>
+
+<p><img src="/images/007-metajson.png"></p>
+
+<h3>Internal Scanner update</h3>
+
+<p>These scanners enable midgen to identify <em>prereqs->test->suggests</em> from a <a href="https://metacpan.org/module/CPAN::Meta::Spec#Prereq-Spec">META.json</a> perspective.</p>
+
+<p>Here is a <a href="/images/007-flow_chart.png">flow chart</a> that should help with why.</p>
+
+<p>Many thanks to TOBYINK for his <a href="https://github.com/kevindawson/App-Midgen/issues/5">critique</a> which resulted in the following taking another step forward.</p>
+
+<h4>Eval new scanner</h4>
+
+<p>Eval is not realy a new scanner, it&rsquo;s just come of age with block support.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>A selection of what Eval supports </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nb">eval</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="k">use</span> <span class="nn">Test::Kwalitee::</span><span class="n">Extra</span> <span class="mf">0.000007</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;;</span>
+</span><span class='line'><span class="nb">eval</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="k">use</span> <span class="n">Moo</span> <span class="mf">1.002</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;;</span>
+</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">no</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span> <span class="p">};</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$HAVE_MOOSE</span> <span class="o">=</span> <span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>Test::Requires update</h4>
+
+<p>Support for barewords in Test::Requires scanner
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Now supports barewords in Test::Requires </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="n">Moo</span> <span class="p">};</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="n">Moose</span> <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">2.000</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Finish off conversion to Type::Tiny</h3>
+
+<p>Why? one, so I can have a consistent Type system regardless of Moose or Moo, two, it&rsquo;s faster.
+The Second part of the conversion from MooX::Types::MooseLike to Type::Tiny.</p>
+
+<p>So we have gone from this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">MooX::Types::MooseLike::</span><span class="n">Base</span> <span class="sx">qw( InstanceOf )</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>To this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Types::</span><span class="n">Standard</span> <span class="sx">qw( InstanceOf )</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Many thanks to TOBYINK along the way.</p>
+
+<p><code>__END__</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Announcing App::Midgen v0.24]]></title>
@@ -249,51 +421,6 @@ The first part of the conversion from MooX::Types::MooseLike to Type::Tiny</p>
 
 
 <p>Here is a sample, <a href="https://github.com/kevindawson/App-Midgen/wiki/Milla">with cpanfile and dist-zilla plugins</a>, see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a> for more examples.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[App::Midgen Take two]]></title>
-    <link href="http://kevindawson.github.io/bowtie/2013/03/24/app-midgen-002/"/>
-    <updated>2013-03-24T17:02:00+00:00</updated>
-    <id>http://kevindawson.github.io/bowtie/2013/03/24/app-midgen-002</id>
-    <content type="html"><![CDATA[<p>First I would like to say a big Thank You for all the critiques I received, here and in the channels.</p>
-
-<p>App::Midgen</p>
-
-<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
-
-<!-- more -->
-
-
-<p>Now able to show dual-life modules current version number.
-Lets start with the changes and inspiration.</p>
-
-<ul>
-<li>Switched to using MetaCPAN-API due to a write issue with CPAN, neilb++</li>
-<li>Switched to using Perl-PrereqScanner to do most of the grunt work as pointed out by Mithaldu++ daxim++</li>
-<li>spelling, re-factor option names, inspired by mauke++</li>
-<li><code>--format</code> <em>change output format</em></li>
-<li>changed default output, no extra processing, only distribution version for modules without a version number mst++</li>
-</ul>
-
-
-<p><em>if I missed anybody, sorry</em></p>
-
-<p>And some new features.
-Add command line option to show dual-line module versions as well.</p>
-
-<pre><code>midgen --dual_life
-</code></pre>
-
-<p>Add ability to read/write options from <code>~/.midgenrc</code></p>
-
-<p>Command line options always overwrite options from <code>~/.midgenrc</code> if you have one.
-The output format uses colour to add visualization of module version number types, be that mcpan, dual-life or added distribution.</p>
-
-<p>We now use colour to help differentiate between the different module version number types, we also honour <strong>$ENV{ANSI_COLORS_DISABLED}</strong></p>
-
-<p>for sample output see <a href="https://github.com/kevindawson/App-Midgen/wiki">wiki</a></p>
 ]]></content>
   </entry>
   

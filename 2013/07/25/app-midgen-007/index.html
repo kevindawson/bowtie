@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Announcing App::Midgen v0.26 - The Musings of a Dyslexic Technologist</title>
+  <meta name="author" content="bowtie">
+
+  
+  <meta name="description" content="Announcing App::Midgen v0.26">
+  <meta name="keywords" content="App::Midgen,Test::Requires,Eval,Type::Tiny,infile,META.json,metajson">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kevindawson.github.io/bowtie/2013/07/25/app-midgen-007">
+  <link href="/bowtie/favicon.png" rel="icon">
+  <link href="/bowtie/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/bowtie/atom.xml" rel="alternate" title="The Musings of a Dyslexic Technologist" type="application/atom+xml">
+  <script src="/bowtie/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/bowtie/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<!--
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+--!>
+
+<!-- 
+ --!>
+
+  
+<script id="search-results-template" type="text/x-handlebars-template">
+  {{#entries}}
+    <article>
+      <h3>
+         <small><time datetime="{{date}}" pubdate>{{date}}</time></small>
+         <a href="{{url}}">{{title}}</a>
+         <p>tagged: {{ tags }} | category: <a href="/categories/{{category }}">{{category}}</a></p>
+      </h3>
+    </article>
+  {{/entries}}
+</script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+  <h1><a href="/bowtie/">The Musings of a Dyslexic Technologist</a></h1>
+  
+    <h2>A blogging framework for bowtie.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/bowtie/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+  
+
+
+
+<ul class="main-navigation">
+  <li><a href="/bowtie/">Blog</a></li>
+  <li><a href="/bowtie/archives">Archives</a></li>
+  <li><a href="https://metacpan.org/author/BOWTIE">MetaCPAN</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Announcing App::Midgen v0.26</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-25T14:40:00+01:00" pubdate data-updated="true">Jul 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>So what’s new?</h2>
+
+<ul>
+<li>Added Two more output formats:
+
+<ul>
+<li>infile, output format, module v perl files they were Found in</li>
+<li>metajson, output format META.json</li>
+</ul>
+</li>
+<li>Internal scanner update and why</li>
+<li>Finish off conversion to Type::Tiny fred</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<h3>Two new output formats:</h3>
+
+<h4>infile</h4>
+
+<p>The following was conceived to provided a solution to <a href="https://rt.cpan.org/Public/Bug/Display.html?id=76527">RT76527</a>.</p>
+
+<p><code>midgen --format infile</code></p>
+
+<figure class='code'><figcaption><span>Output Format infile run against a test dist </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>  -------------------------------------------------------
+</span><span class='line'> | Module                | Version  | Found in           |
+</span><span class='line'>  -------------------------------------------------------
+</span><span class='line'> | Bar                   | 0.2      | /lib/Anamal.pm     |
+</span><span class='line'> | Carp::Always::Color   | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | Compiler::Lexer       | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | Data::Printer         | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | Foo                   | 0.123456 | /lib/Anamal.pm     |
+</span><span class='line'> | Moo                   | 1.000    | /lib/Anamal.pm     |
+</span><span class='line'> | Moo                   | 0.999    | /lib/Plugin/Dog.pm |
+</span><span class='line'> | Moo                   | 0.888    | /lib/Plugin/Cat.pm |
+</span><span class='line'> | Params::Util          | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | String::RewritePrefix | 0.005    | /lib/Anamal.pm     |
+</span><span class='line'> | Test::Mock::LWP       | 0        | /t/666-tmw.t       |
+</span><span class='line'> | Test::Mock::LWP       | 0        | /t/00.load.t       |
+</span><span class='line'> | Test::More            | 0        | /t/pod.t           |
+</span><span class='line'> | Test::More            | 0        | /t/pod-coverage.t  |
+</span><span class='line'> | Test::More            | 0        | /t/666-tmw.t       |
+</span><span class='line'> | Test::More            | 0        | /t/00.load.t       |
+</span><span class='line'> | Test::Pod             | 0        | /t/pod.t           |
+</span><span class='line'> | Test::Pod::Coverage   | 0        | /t/pod-coverage.t  |
+</span><span class='line'> | Types::Standard       | 0        | /lib/Anamal.pm     |
+</span><span class='line'> | X                     | 0        | /lib/Anamal.pm     |
+</span><span class='line'>  -------------------------------------------------------
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>NB: this is the only output format which displays the found version string, because it just makes sense in this instance.
+Many thanks to ETHER along the way.</p>
+
+<h4>metajson</h4>
+
+<p>The following is what midgen thinks your <a href="https://metacpan.org/module/CPAN::Meta::Spec#Prereq-Spec">META.json</a> might contain based upon your dist, or in this case a test dist.</p>
+
+<p><code>midgen --format metajson</code></p>
+
+<p><img src="/bowtie/images/007-metajson.png"></p>
+
+<h3>Internal Scanner update</h3>
+
+<p>These scanners enable midgen to identify <em>prereqs->test->suggests</em> from a <a href="https://metacpan.org/module/CPAN::Meta::Spec#Prereq-Spec">META.json</a> perspective.</p>
+
+<p>Here is a <a href="/bowtie/images/007-flow_chart.png">flow chart</a> that should help with why.</p>
+
+<p>Many thanks to TOBYINK for his <a href="https://github.com/kevindawson/App-Midgen/issues/5">critique</a> which resulted in the following taking another step forward.</p>
+
+<h4>Eval new scanner</h4>
+
+<p>Eval is not realy a new scanner, it&rsquo;s just come of age with block support.</p>
+
+<figure class='code'><figcaption><span>A selection of what Eval supports </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nb">eval</span> <span class="s">&quot;use Test::Kwalitee::Extra 0.000007&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">eval</span> <span class="s">&quot;use Moo 1.002; 1;&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">no</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span> <span class="p">};</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$HAVE_MOOSE</span> <span class="o">=</span> <span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Test::Requires update</h4>
+
+<p>Support for barewords in Test::Requires scanner</p>
+
+<figure class='code'><figcaption><span>Now supports barewords in Test::Requires </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="n">Moo</span> <span class="p">};</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="n">Moose</span> <span class="o">=&gt;</span> <span class="s">&#39;2.000&#39;</span> <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Finish off conversion to Type::Tiny</h3>
+
+<p>Why? one, so I can have a consistent Type system regardless of Moose or Moo, two, it&rsquo;s faster.
+The Second part of the conversion from MooX::Types::MooseLike to Type::Tiny.</p>
+
+<p>So we have gone from this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">MooX::Types::MooseLike::</span><span class="n">Base</span> <span class="sx">qw( InstanceOf )</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Types::</span><span class="n">Standard</span> <span class="sx">qw( InstanceOf )</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Many thanks to TOBYINK along the way.</p>
+
+<p><code>__END__</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">bowtie</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-25T14:40:00+01:00" pubdate data-updated="true">Jul 25<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/bowtie/categories/app-midgen/'>App::Midgen</a>, <a class='category' href='/bowtie/categories/eval/'>Eval</a>, <a class='category' href='/bowtie/categories/meta-dot-json/'>META.json</a>, <a class='category' href='/bowtie/categories/test-requires/'>Test::Requires</a>, <a class='category' href='/bowtie/categories/type-tiny/'>Type::Tiny</a>, <a class='category' href='/bowtie/categories/infile/'>infile</a>, <a class='category' href='/bowtie/categories/metajson/'>metajson</a>, <a class='category' href='/bowtie/categories/midgen/'>midgen</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/bowtie/2013/06/04/app-midgen-006/" title="Previous Post: Announcing App::Midgen v0.24">&laquo; Announcing App::Midgen v0.24</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - bowtie -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

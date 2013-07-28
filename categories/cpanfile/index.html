@@ -247,6 +247,9 @@ monthCalendar = function(id,year,month)
   var highlightArray = new Array();
   var hightlightLinks = new Array();
   
+  highlightArray.push('07/25/2013');
+  hightlightLinks.push('/bowtie/2013/07/25/app-midgen-007/');
+  
   highlightArray.push('06/04/2013');
   hightlightLinks.push('/bowtie/2013/06/04/app-midgen-006/');
   
@@ -258,9 +261,6 @@ monthCalendar = function(id,year,month)
   
   highlightArray.push('04/03/2013');
   hightlightLinks.push('/bowtie/2013/04/03/app-midgen-003/');
-  
-  highlightArray.push('03/24/2013');
-  hightlightLinks.push('/bowtie/2013/03/24/app-midgen-002/');
   		
   var cal = new Calendar(month,year,highlightArray,hightlightLinks);
   cal.generateHTML(id);
@@ -315,14 +315,18 @@ $(document).ready(function(){
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/bowtie/categories/app-midgen/'>App::Midgen (6)</a></li>
+    <li class='category'><a href='/bowtie/categories/app-midgen/'>App::Midgen (7)</a></li>
+<li class='category'><a href='/bowtie/categories/eval/'>Eval (1)</a></li>
+<li class='category'><a href='/bowtie/categories/meta-json/'>META.json (1)</a></li>
 <li class='category'><a href='/bowtie/categories/ppi-xs/'>PPI::XS (1)</a></li>
 <li class='category'><a href='/bowtie/categories/perl-minimumversion-fast/'>Perl::MinimumVersion::Fast (1)</a></li>
-<li class='category'><a href='/bowtie/categories/test-requires/'>Test::Requires (1)</a></li>
-<li class='category'><a href='/bowtie/categories/type-tiny/'>Type::Tiny (1)</a></li>
+<li class='category'><a href='/bowtie/categories/test-requires/'>Test::Requires (2)</a></li>
+<li class='category'><a href='/bowtie/categories/type-tiny/'>Type::Tiny (2)</a></li>
 <li class='category'><a href='/bowtie/categories/cpanfile/'>cpanfile (3)</a></li>
 <li class='category'><a href='/bowtie/categories/dual-life/'>dual_life (1)</a></li>
-<li class='category'><a href='/bowtie/categories/midgen/'>midgen (6)</a></li>
+<li class='category'><a href='/bowtie/categories/infile/'>infile (1)</a></li>
+<li class='category'><a href='/bowtie/categories/metajson/'>metajson (1)</a></li>
+<li class='category'><a href='/bowtie/categories/midgen/'>midgen (7)</a></li>
 <li class='category'><a href='/bowtie/categories/midgenrc/'>midgenrc (2)</a></li>
 <li class='category'><a href='/bowtie/categories/octopress/'>octopress (1)</a></li>
 <li class='category'><a href='/bowtie/categories/use-ok/'>use_ok (1)</a></li>
