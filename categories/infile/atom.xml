@@ -4,7 +4,7 @@
   <title><![CDATA[Category: infile | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/infile/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2013-07-28T17:30:00+01:00</updated>
+  <updated>2013-07-31T10:52:52+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -29,7 +29,7 @@
 </ul>
 </li>
 <li>Internal scanner update and why</li>
-<li>Finish off conversion to Type::Tiny fred</li>
+<li>Finish off conversion to Type::Tiny</li>
 </ul>
 
 
