@@ -9,8 +9,8 @@
   <meta name="author" content="bowtie">
 
   
-  <meta name="description" content="So what’s new? Internal scanner update and why New scanner UseModule, Module::Runtime support
-Internal scanners now provide version strings, used by &hellip;">
+  <meta name="description" content="So what’s new? Now with support for prereqs-&gt;runtime-&gt;recommends Meta-CPAN-spec v2
+Internal scanner update and why New scanner UseModule, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,18 +114,20 @@ Internal scanners now provide version strings, used by &hellip;">
   <div class="entry-content"><h2>So what’s new?</h2>
 
 <ul>
+<li>Now with support for <code>prereqs-&gt;runtime-&gt;recommends</code> Meta-CPAN-spec v2</li>
 <li>Internal scanner update and why
 
 <ul>
-<li>New scanner UseModule, Module::Runtime support</li>
-<li>Internal scanners now provide version strings, used by infile, output format</li>
+<li>New scanner <strong>UseModule</strong>, Module::Runtime support</li>
+<li>Scanner <strong>Eval</strong> now supports <strong>try</strong> Blocks as well.</li>
+<li>Internal scanners now provide version strings, used by <strong>infile</strong>, output format</li>
 </ul>
 </li>
 <li>Changes to the output formats:
 
 <ul>
-<li>eumm, output format, Added for ExtUtils::MakeMaker (enabling &ndash;> META.json)</li>
-<li>dzil, output format has been removed</li>
+<li>Output format, <strong>eumm</strong>, added for ExtUtils::MakeMaker (enabling &ndash;> META.json)</li>
+<li>Updates to <strong>metacpan</strong> &amp;&amp; <strong>cpanfile</strong> to show <code>prereqs-&gt;runtime-&gt;recommends</code></li>
 </ul>
 </li>
 </ul>

@@ -110,18 +110,20 @@
 <div class="entry-content"><h2>So what’s new?</h2>
 
 <ul>
+<li>Now with support for <code>prereqs-&gt;runtime-&gt;recommends</code> Meta-CPAN-spec v2</li>
 <li>Internal scanner update and why
 
 <ul>
-<li>New scanner UseModule, Module::Runtime support</li>
-<li>Internal scanners now provide version strings, used by infile, output format</li>
+<li>New scanner <strong>UseModule</strong>, Module::Runtime support</li>
+<li>Scanner <strong>Eval</strong> now supports <strong>try</strong> Blocks as well.</li>
+<li>Internal scanners now provide version strings, used by <strong>infile</strong>, output format</li>
 </ul>
 </li>
 <li>Changes to the output formats:
 
 <ul>
-<li>eumm, output format, Added for ExtUtils::MakeMaker (enabling &ndash;> META.json)</li>
-<li>dzil, output format has been removed</li>
+<li>Output format, <strong>eumm</strong>, added for ExtUtils::MakeMaker (enabling &ndash;> META.json)</li>
+<li>Updates to <strong>metacpan</strong> &amp;&amp; <strong>cpanfile</strong> to show <code>prereqs-&gt;runtime-&gt;recommends</code></li>
 </ul>
 </li>
 </ul>
@@ -134,9 +136,9 @@
 
 <h3>Internal Scanner update</h3>
 
-<p>The internal scanners now all return version strings if present, which is being utilized by the <strong>infile</strong> output format initialy.</p>
+<p>The internal scanners now all return version strings if present, which is being utilized by the <strong>infile</strong> output format initially.</p>
 
-<p>Bug: only return Module::Name that start with first chr upper OLIVER++, Fixed</p>
+<p>Bug: only return Module::Name that start with first charter upper OLIVER++, Fixed</p>
 
 <h4>UseModule new scanner</h4>
 
@@ -214,7 +216,7 @@
 
 <p>Please note that we are using <code>prereqs-&gt;runtime-&gt;recommends</code> to highlight these found modules for you.</p>
 
-<p>perl-minversion is 5.010 due to <code>mro</code> see below and infile later.</p>
+<p>perl-minversion is 5.010 in following examples due to <code>mro</code> see below and infile later.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -247,7 +249,7 @@
 
 <h4>eumm</h4>
 
-<p>The eumm output format, added for ExtUtils::MakeMaker (enabling &ndash;> META.json) is a rework of the previous dzil.</p>
+<p>The eumm output format, added for ExtUtils::MakeMaker (enabling &ndash;> META.json) is a complete rework of the previous dzil.</p>
 
 <p><code>midgen --format eumm</code></p>
 
@@ -492,7 +494,7 @@
 
 <p><strong>pros</strong> you are going to get a lot more information.</p>
 
-<p><strong>cons</strong> you might see some duplicats as some modules are found by more than one additional scanner.</p>
+<p><strong>cons</strong> you might see some duplicates as some modules are found by more than one additional scanner.</p>
 
 <figure class='code'><figcaption><span>Output Format infile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
