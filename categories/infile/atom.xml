@@ -4,7 +4,7 @@
   <title><![CDATA[Category: infile | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/infile/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-02-09T13:45:23+00:00</updated>
+  <updated>2014-02-09T20:31:10+00:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -214,14 +214,14 @@ internals: {
 <span class='line-number'>61</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>use strict;
 </span><span class='line'>use warnings;
-</span><span class='line'>use ExtUtils::MakeMaker 0.68;&lt;/p>
+</span><span class='line'>use ExtUtils::MakeMaker 6.68;&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>WriteMakefile(
 </span><span class='line'>   &lsquo;NAME&rsquo; => &lsquo;Class::Accessor::Grouped&rsquo;,
 </span><span class='line'>   &lsquo;VERSION_FROM&rsquo; => &lsquo;lib/Class/Accessor/Grouped.pm&rsquo;,
 </span><span class='line'>   &lsquo;ABSTRACT_FROM&rsquo; => &lsquo;lib/Class/Accessor/Grouped.pm&rsquo;,
 </span><span class='line'>   &lsquo;AUTHOR&rsquo; => &lsquo;&hellip;&rsquo;,
-</span><span class='line'>   &lsquo;LICENSE&rsquo; => &lsquo;perl_5&rsquo;,
+</span><span class='line'>   &lsquo;LICENSE&rsquo; => &lsquo;perl&rsquo;,
 </span><span class='line'>   &lsquo;BUILD_REQUIRES&rsquo; => {&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>  'ExtUtils::MakeMaker' =&gt; '6.68'
