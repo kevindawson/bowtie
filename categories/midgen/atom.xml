@@ -4,7 +4,7 @@
   <title><![CDATA[Category: midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-02-09T20:31:10+00:00</updated>
+  <updated>2014-02-15T16:20:39+00:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -49,7 +49,7 @@
 
 <p>The internal scanners now all return version strings if present, which is being utilized by the <strong>infile</strong> output format initially.</p>
 
-<p>Bug: only return Module::Name that start with first charter upper OLIVER++, Fixed</p>
+<p>Bug: only return Module::Name that start with first character upper OLIVER++, Fixed</p>
 
 <h4>UseModule new scanner</h4>
 
