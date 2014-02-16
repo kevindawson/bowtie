@@ -4,7 +4,7 @@
   <title><![CDATA[Category: infile | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/infile/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-02-15T16:20:39+00:00</updated>
+  <updated>2014-02-16T19:56:06+00:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -12,6 +12,263 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[midgen 0.28 plus]]></title>
+    <link href="http://kevindawson.github.io/bowtie/2014/02/16/app-midgen-009/"/>
+    <updated>2014-02-16T14:40:00+00:00</updated>
+    <id>http://kevindawson.github.io/bowtie/2014/02/16/app-midgen-009</id>
+    <content type="html"><![CDATA[<h2>Update</h2>
+
+<ul>
+<li>Flowchart</li>
+<li>infile &ndash; Installed</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<h4>Flowchart</h4>
+
+<p>The following is the current logic of what midgen is doing and the order it dose it in.</p>
+
+<p><img src="/images/009-midgen_002.png"></p>
+
+<h3>infile &ndash; Installed</h3>
+
+<p>In the end I opted for some color: Missing in red ether++</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format infile run against a test dist </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;kevin@billy:~/git/App-SCS$ perl -MCarp::Always::Color ~/GitHub/App-Midgen/script/midgen -f infile
+</span><span class='line'>Running midgen v0.29_08
+</span><span class='line'>Stamped &amp;ndash;&gt; 2014-02-16T19:10:10Z
+</span><span class='line'>Package: App::SCS&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;hr /&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;hr /&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt; | App::SCS                                 | 0        | Missing  | t/02simple.t                                        |
+</span><span class='line'> | App::SCS::Page                           | 0        | Missing  | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | App::SCS::PageSet                        | 0        | Missing  | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | App::SCS::PageSet                        | 0        | Missing  | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | App::SCS::PageSet                        | 0        | Missing  | lib/App/SCS.pm                                      |
+</span><span class='line'> | App::SCS::Plugin::Generate::StaticServer | 0        | Missing  | lib/App/SCS/Plugin/Generate.pm                      |
+</span><span class='line'> | App::SCS::Role::PageChildren             | 0        | Missing  | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | App::SCS::Role::PageChildren             | 0        | Missing  | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | App::SCS::Role::PagePlugin               | 0        | Missing  | lib/App/SCS/Plugin/Core/PagePlugin/RemovePlugin.pm  |
+</span><span class='line'> | App::SCS::Role::PagePlugin               | 0        | Missing  | lib/App/SCS/Plugin/Core/PagePlugin/Template.pm      |
+</span><span class='line'> | App::SCS::Role::PagePlugin               | 0        | Missing  | lib/App/SCS/Plugin/Core/PagePlugin/PageData.pm      |
+</span><span class='line'> | App::SCS::Role::Plugin                   | 0        | Missing  | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | App::SCS::Role::Plugin                   | 0        | Missing  | lib/App/SCS/Plugin/Actions.pm                       |
+</span><span class='line'> | App::SCS::Role::Plugin                   | 0        | Missing  | lib/App/SCS/Plugin/Feeds.pm                         |
+</span><span class='line'> | App::SCS::Role::Plugin                   | 0        | Missing  | lib/App/SCS/Plugin/Server.pm                        |
+</span><span class='line'> | App::SCS::Role::Plugin                   | 0        | Missing  | lib/App/SCS/Plugin/Generate.pm                      |
+</span><span class='line'> | App::SCS::Role::Plugin                   | 0        | Missing  | lib/App/SCS/Plugin/Archives.pm                      |
+</span><span class='line'> | App::SCS::Role::WithConfig               | 0        | Missing  | lib/App/SCS/Role/Plugin.pm                          |
+</span><span class='line'> | App::SCS::Role::WithConfig               | 0        | Missing  | lib/App/SCS.pm                                      |
+</span><span class='line'> | App::SCS::Web                            | 0        | Missing  | lib/App/SCS.pm                                      |
+</span><span class='line'> | Data::Pond                               | 0        | Missing  | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | Getopt::Long                             | 0        | 2.42     | lib/App/SCS/Role/Plugin.pm                          |
+</span><span class='line'> | HTML::Tags                               | 0        | Missing  | lib/App/SCS/Plugin/Feeds/Generator.pm               |
+</span><span class='line'> | HTML::Zoom                               | 0        | Missing  | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | HTML::Zoom                               | 0        | Missing  | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | lib/App/SCS.pm                                      |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | t/02simple.t                                        |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | lib/App/SCS/Plugin/Generate.pm                      |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | lib/App/SCS/Plugin/Actions.pm                       |
+</span><span class='line'> | IO::All                                  | 0        | Missing  | t/01load.t                                          |
+</span><span class='line'> | JSON::MaybeXS                            | 0        | Missing  | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | List::Util                               | 0        | 1.38     | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | List::Util                               | 0        | 1.38     | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | List::Util                               | 0        | 1.38     | lib/App/SCS/Plugin/Core/PagePlugin/Template.pm      |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/Plugin/Actions.pm                       |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/Plugin/Generate/StaticServer.pm         |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS.pm                                      |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/Plugin/Server.pm                        |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/Plugin/Generate.pm                      |
+</span><span class='line'> | Module::Runtime                          | 0        | 0.014    | lib/App/SCS/Plugin/Feeds.pm                         |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/LatestPageSet.pm                        |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Feeds/Generator.pm               |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Core/PagePlugin/PageData.pm      |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Actions.pm                       |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Core/PagePlugin/Template.pm      |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Archives.pm                      |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS.pm                                      |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Generate.pm                      |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Feeds.pm                         |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Core/PagePlugin/RemovePlugin.pm  |
+</span><span class='line'> | Moo                                      | 0        | 1.004002 | lib/App/SCS/Plugin/Server.pm                        |
+</span><span class='line'> | Moo::Role                                | 0        | 1.004002 | lib/App/SCS/Role/WithConfig.pm                      |
+</span><span class='line'> | Moo::Role                                | 0        | 1.004002 | lib/App/SCS/Role/PageChildren.pm                    |
+</span><span class='line'> | Moo::Role                                | 0        | 1.004002 | lib/App/SCS/Role/Plugin.pm                          |
+</span><span class='line'> | Moo::Role                                | 0        | 1.004002 | lib/App/SCS/Role/PagePlugin.pm                      |
+</span><span class='line'> | Plack::Middleware::SSI                   | 0        | Missing  | lib/App/SCS/Plugin/Generate/StaticServer.pm         |
+</span><span class='line'> | Plack::Runner                            | 0        | undef    | lib/App/SCS/Plugin/Generate/StaticServer.pm         |
+</span><span class='line'> | Plack::Runner                            | 0        | undef    | lib/App/SCS/Plugin/Server.pm                        |
+</span><span class='line'> | Safe::Isa                                | 0        | 1.000004 | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | Safe::Isa                                | 0        | 1.000004 | lib/App/SCS/Web.pm                                  |
+</span><span class='line'> | Starman                                  | 0        | Missing  | lib/App/SCS/Plugin/Server.pm                        |
+</span><span class='line'> | Starman                                  | 0        | Missing  | lib/App/SCS/Plugin/Generate/StaticServer.pm         |
+</span><span class='line'> | Sub::Quote                               | 0        | 1.004002 | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | Syntax::Keyword::Gather                  | 0        | Missing  | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | Test::More                               | 0        | 1.001002 | t/02simple.t                                        |
+</span><span class='line'> | Test::More                               | 0        | 1.001002 | t/01load.t                                          |
+</span><span class='line'> | Test::SharedFork                         | 0        | 0.21     | t/01load.t                                          |
+</span><span class='line'> | Text::MultiMarkdown                      | 0        | Missing  | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | Time::Local                              | 0        | 1.2300   | lib/App/SCS/Page.pm                                 |
+</span><span class='line'> | Try::Tiny                                | 0        | 0.19     | lib/App/SCS/PageSet.pm                              |
+</span><span class='line'> | URI                                      | 0        | 1.60     | lib/App/SCS/Plugin/Feeds/Generator.pm               |
+</span><span class='line'> | Web::Simple                              | 0        | Missing  | lib/App/SCS/Plugin/Generate/StaticServer.pm         |
+</span><span class='line'> | Web::Simple                              | 0        | Missing  | lib/App/SCS/Web.pm                                  |
+</span><span class='line'> | XML::Tags                                | 0        | Missing  | lib/App/SCS/Plugin/Feeds/Generator.pm               |
+</span><span class='line'> | strictures                               | 1        | 1.005002 | t/02simple.t                                        |
+</span><span class='line'> | strictures                               | 1        | 1.005002 | t/01load.t                                          |
+</span><span class='line'> | warnings                                 | 0        | 1.18     | lib/App/SCS/Plugin/Feeds/Generator.pm               |
+</span><span class='line'> | warnings::illegalproto                   | 0        | Missing  | lib/App/SCS/Plugin/Core.pm                          |
+</span><span class='line'> | warnings::illegalproto                   | 0        | Missing  | lib/App/SCS/Plugin/Archives.pm                      |
+</span><span class='line'> | warnings::illegalproto                   | 0        | Missing  | lib/App/SCS/Plugin/Generate.pm                      |
+</span><span class='line'> | warnings::illegalproto                   | 0        | Missing  | lib/App/SCS/Plugin/Server.pm                        |&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;hr /&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;I just spent 5s doing all that, for you, enjoy
+</span><span class='line'>&lt;strong&gt;END&lt;/strong&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>NB: I always work with &lsquo;White on Black&rsquo;</p>
+
+<p><code>__END__</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Announcing App::Midgen v0.28]]></title>
