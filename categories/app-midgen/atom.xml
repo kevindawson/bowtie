@@ -4,7 +4,7 @@
   <title><![CDATA[Category: App::Midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/app-midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-02-16T19:56:06+00:00</updated>
+  <updated>2014-03-22T23:04:40+00:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -12,6 +12,109 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mro - MRO::Compat catch]]></title>
+    <link href="http://kevindawson.github.io/bowtie/2014/03/22/app-midgen-010/"/>
+    <updated>2014-03-22T14:40:00+00:00</updated>
+    <id>http://kevindawson.github.io/bowtie/2014/03/22/app-midgen-010</id>
+    <content type="html"><![CDATA[<h2>Your scanner is missing a heuristic exception&hellip; issue#6</h2>
+
+<ul>
+<li>issue #6</li>
+<li>The Catch</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<h3><a href="https://github.com/kevindawson/App-Midgen/issues/6">issue #6</a>.</h3>
+
+<p>When doing a check for the minimum perl version that should be specified in the ToolChain.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code snippet showing a typical usage of MRO::Compact </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1"># use Module::Runtime to work around the 5.8 require bugs</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="vg">$]</span> <span class="o">&amp;</span><span class="ow">lt</span><span class="p">;</span> <span class="mf">5.009_005</span><span class="p">)</span> <span class="p">{</span><span class="sr">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;</span><span class="nn">Module::Runtime::</span><span class="n">require_module</span><span class="p">(</span><span class="s">&#39;MRO::Compat&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="sr">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span> <span class="p">{</span><span class="sr">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;</span><span class="nb">require</span> <span class="n">mro</span><span class="p">;</span>
+</span><span class='line'><span class="sr">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Both of these modules</p>
+
+<pre><code>Perl::MinimumVersion
+Perl::MinimumVersion::Fast
+</code></pre>
+
+<p>Think that finding <strong>require mro</strong> syntax, means that the perl-minversion should be set to perl 5.010000</p>
+
+<h4>Why this is stupid?</h4>
+
+<p>Because they both completely ignore the presence of <strong>MRO::Compat</strong> and it&rsquo;s use.</p>
+
+<p><blockquote><p>The &ldquo;mro&rdquo; namespace provides several utilities for dealing with method resolution order and method caching in general in Perl 5.9.5 and higher.</p></p><p><p>This module provides those interfaces for earlier versions of Perl (back to 5.6.0 anyways).</p></p><p><p>It is a harmless no-op to use this module on 5.9.5+. That is to say, code which properly uses MRO::Compat will work unmodified on both older Perls and 5.9.5+.</p></p><p><p>If you&rsquo;re writing a piece of software that would like to use the parts of 5.9.5+&rsquo;s mro:: interfaces that are supported here, and you want compatibility with older Perls, this is the module for you.</p><footer><strong>MRO::Compat</strong> <cite>POD <a href="https://metacpan.org/pod/MRO::Compat#DESCRIPTION">https://metacpan.org/pod/MRO::Compat#DESCRIPTION</a></cite></footer></blockquote></p>
+
+<p>Many thanks to the #toolchain for showing me the light.</p>
+
+<h3>The Catch</h3>
+
+<h4>Now for some heuristics :)</h4>
+
+<ul>
+<li>Scan dist for meta-2 phase-requirements
+
+<ul>
+<li>mro &ndash;> RuntimeRequires</li>
+<li>MRO::Compat &ndash;> RuntimeRecommends</li>
+</ul>
+</li>
+<li>Check module for perl-minversion (pmv)</li>
+<li>skip pmv if ( pmv blame = require mro; &ndash;> 5.010 &amp;&amp; module contains MRO::Compat )
+
+<ul>
+<li>if output format meta-1.x recast MRO::Compat to requires (RuntimeRequires)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>The following is the result of <code>midgen -f mi</code></p>
+
+<p><img src="/images/010_midgen_0.31_05.png"></p>
+
+<p>nb: midgen v0.31_05 in GitHub</p>
+
+<p><code>__END__</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[midgen 0.28 plus]]></title>
@@ -1379,101 +1482,6 @@ The first part of the conversion from MooX::Types::MooseLike to Type::Tiny</p>
 <p>Many thanks to TOBYINK along the way, the final part will happen soon.</p>
 
 <p><code>__END__</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Announcing App::Midgen v0.22]]></title>
-    <link href="http://kevindawson.github.io/bowtie/2013/05/09/app-midgen-005/"/>
-    <updated>2013-05-09T19:29:00+01:00</updated>
-    <id>http://kevindawson.github.io/bowtie/2013/05/09/app-midgen-005</id>
-    <content type="html"><![CDATA[<h2>So what’s new?</h2>
-
-<ul>
-<li>Switched output format type from <strong>build</strong> to <strong>mb</strong></li>
-<li>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories
-
-<ul>
-<li>Find modules in Test::Requires blocks</li>
-<li>Find modules in use_ok BEGIN blocks</li>
-</ul>
-</li>
-<li>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</li>
-</ul>
-
-
-<!-- more -->
-
-
-<h3>Switched output format type from <strong>build</strong> to <strong>mb</strong></h3>
-
-<pre><code>midgen -f mb
-</code></pre>
-
-<p>Thanks for the kick azawawi++</p>
-
-<h3>Extract more from <strong>t/</strong> and <strong>xt/</strong> directories</h3>
-
-<p>We can now find the following located in your test files, then display in the revelant section in your chose output format.</p>
-
-<h4>Find modules in <strong>Test::Requires</strong> blocks</h4>
-
-<p>Example 1</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of Test::Requires </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Pod</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Extra</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw[MIME::Types]</span><span class="p">;</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw(IO::Handle::Util LWP::Protocol::http10)</span><span class="p">;</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test1</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
-</span><span class='line'>  <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test2</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">2.02</span><span class="p">,</span>
-</span><span class='line'>  <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h4>Find modules in <strong>use_ok</strong> BEGIN blocks</h4>
-
-<p>Example 2</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of ues_ok in BEGIN block </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadKey</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">2.30</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadLine</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.10</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsOne</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsTwo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mf">2.02</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsThree</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="mf">3.03</span> <span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h3>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h3>
-
-<pre><code>~/GitHub/Plack$ midgen -lf cpanfile
-</code></pre>
-
-<p><img src="/images/005-example-03.png"></p>
-
-<ul>
-<li>The above shows <strong>requires</strong> from ( use, require, no, use_ok, &hellip; )</li>
-<li>The <strong>suggests</strong> come from ( Test::Requires )</li>
-</ul>
-
-
-<p><strong>nb</strong> <em>the !mcpan are modules from the local test framework</em> hence they don&rsquo;t exist :)</p>
 ]]></content>
   </entry>
   

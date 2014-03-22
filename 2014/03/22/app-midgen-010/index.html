@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mro - MRO::Compat catch - The Musings of a Dyslexic Technologist</title>
+  <meta name="author" content="bowtie">
+
+  
+  <meta name="description" content="mro - MRO::Compat catch">
+  <meta name="keywords" content="App::Midgen,midgen,issue#6,MRO::Compat,mro">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kevindawson.github.io/bowtie/2014/03/22/app-midgen-010">
+  <link href="/bowtie/favicon.png" rel="icon">
+  <link href="/bowtie/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/bowtie/atom.xml" rel="alternate" title="The Musings of a Dyslexic Technologist" type="application/atom+xml">
+  <script src="/bowtie/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/bowtie/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+
+<!--
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+--!>
+
+<!-- 
+ --!>
+
+  
+<script id="search-results-template" type="text/x-handlebars-template">
+  {{#entries}}
+    <article>
+      <h3>
+         <small><time datetime="{{date}}" pubdate>{{date}}</time></small>
+         <a href="{{url}}">{{title}}</a>
+         <p>tagged: {{ tags }} | category: <a href="/categories/{{category }}">{{category}}</a></p>
+      </h3>
+    </article>
+  {{/entries}}
+</script>
+
+
+</head>
+
+<body   class="no-sidebar"  >
+  <header role="banner"><hgroup>
+  <h1><a href="/bowtie/">The Musings of a Dyslexic Technologist</a></h1>
+  
+    <h2>A blogging framework for bowtie.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/bowtie/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+  
+
+
+
+<ul class="main-navigation">
+  <li><a href="/bowtie/">Blog</a></li>
+  <li><a href="/bowtie/archives">Archives</a></li>
+  <li><a href="https://metacpan.org/author/BOWTIE">MetaCPAN</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">mro - MRO::Compat catch</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-22T14:40:00+00:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Your scanner is missing a heuristic exception&hellip; issue#6</h2>
+
+<ul>
+<li>issue #6</li>
+<li>The Catch</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<h3><a href="https://github.com/kevindawson/App-Midgen/issues/6">issue #6</a>.</h3>
+
+<p>When doing a check for the minimum perl version that should be specified in the ToolChain.</p>
+
+<figure class='code'><figcaption><span>Code snippet showing a typical usage of MRO::Compact </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1"># use Module::Runtime to work around the 5.8 require bugs</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="vg">$]</span> <span class="o">&lt;</span> <span class="mf">5.009_005</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nn">Module::Runtime::</span><span class="n">require_module</span><span class="p">(</span><span class="s">&#39;MRO::Compat&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">require</span> <span class="n">mro</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both of these modules</p>
+
+<pre><code>Perl::MinimumVersion
+Perl::MinimumVersion::Fast
+</code></pre>
+
+<p>Think that finding <strong>require mro</strong> syntax, means that the perl-minversion should be set to perl 5.010000</p>
+
+<h4>Why this is stupid?</h4>
+
+<p>Because they both completely ignore the presence of <strong>MRO::Compat</strong> and it&rsquo;s use.</p>
+
+<blockquote><p>The &#8220;mro&#8221; namespace provides several utilities for dealing with method resolution order and method caching in general in Perl 5.9.5 and higher.</p><p>This module provides those interfaces for earlier versions of Perl (back to 5.6.0 anyways).</p><p>It is a harmless no-op to use this module on 5.9.5+. That is to say, code which properly uses MRO::Compat will work unmodified on both older Perls and 5.9.5+.</p><p>If you&#8217;re writing a piece of software that would like to use the parts of 5.9.5+&#8217;s mro:: interfaces that are supported here, and you want compatibility with older Perls, this is the module for you.</p><footer><strong>MRO::Compat, POD</strong> <cite><a href='https://metacpan.org/pod/MRO::Compat#DESCRIPTION'>metacpan.org/pod/&hellip;</a></cite></footer></blockquote>
+
+
+<p>Many thanks to the #toolchain for showing me the light.</p>
+
+<h3>The Catch</h3>
+
+<h4>Now for some heuristics :)</h4>
+
+<ul>
+<li>Scan dist for meta-2 phase-requirements
+
+<ul>
+<li>mro &ndash;> RuntimeRequires</li>
+<li>MRO::Compat &ndash;> RuntimeRecommends</li>
+</ul>
+</li>
+<li>Check module for perl-minversion (pmv)</li>
+<li>skip pmv if ( pmv blame = require mro; &ndash;> 5.010 &amp;&amp; module contains MRO::Compat )
+
+<ul>
+<li>if output format meta-1.x recast MRO::Compat to requires (RuntimeRequires)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>The following is the result of <code>midgen -f mi</code></p>
+
+<p><img src="/bowtie/images/010_midgen_0.31_05.png"></p>
+
+<p>nb: midgen v0.31_05 in GitHub</p>
+
+<p><code>__END__</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">bowtie</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-22T14:40:00+00:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/bowtie/categories/app-midgen/'>App::Midgen</a>, <a class='category' href='/bowtie/categories/mro-compat/'>MRO::Compat</a>, <a class='category' href='/bowtie/categories/midgen/'>midgen</a>, <a class='category' href='/bowtie/categories/mro/'>mro</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/bowtie/2014/02/16/app-midgen-009/" title="Previous Post: midgen 0.28 plus">&laquo; midgen 0.28 plus</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - bowtie -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

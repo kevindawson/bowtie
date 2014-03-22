@@ -83,7 +83,7 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Category: Flowchart</h1>
+    <h1 class="entry-title">Category: flowchart</h1>
     
   </header>
   
@@ -219,6 +219,9 @@ monthCalendar = function(id,year,month)
   var highlightArray = new Array();
   var hightlightLinks = new Array();
   
+  highlightArray.push('03/22/2014');
+  hightlightLinks.push('/bowtie/2014/03/22/app-midgen-010/');
+  
   highlightArray.push('02/16/2014');
   hightlightLinks.push('/bowtie/2014/02/16/app-midgen-009/');
   
@@ -230,9 +233,6 @@ monthCalendar = function(id,year,month)
   
   highlightArray.push('06/04/2013');
   hightlightLinks.push('/bowtie/2013/06/04/app-midgen-006/');
-  
-  highlightArray.push('05/09/2013');
-  hightlightLinks.push('/bowtie/2013/05/09/app-midgen-005/');
   		
   var cal = new Calendar(month,year,highlightArray,hightlightLinks);
   cal.generateHTML(id);
@@ -287,9 +287,10 @@ $(document).ready(function(){
 <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/bowtie/categories/app-midgen/'>App::Midgen (9)</a></li>
+    <li class='category'><a href='/bowtie/categories/app-midgen/'>App::Midgen (10)</a></li>
 <li class='category'><a href='/bowtie/categories/eval/'>Eval (2)</a></li>
 <li class='category'><a href='/bowtie/categories/meta-json/'>META.json (1)</a></li>
+<li class='category'><a href='/bowtie/categories/mro-compat/'>MRO::Compat (1)</a></li>
 <li class='category'><a href='/bowtie/categories/module-runtime/'>Module::Runtime (1)</a></li>
 <li class='category'><a href='/bowtie/categories/ppi-xs/'>PPI::XS (1)</a></li>
 <li class='category'><a href='/bowtie/categories/perl-minimumversion-fast/'>Perl::MinimumVersion::Fast (1)</a></li>
@@ -301,8 +302,9 @@ $(document).ready(function(){
 <li class='category'><a href='/bowtie/categories/flowchart/'>flowchart (1)</a></li>
 <li class='category'><a href='/bowtie/categories/infile/'>infile (3)</a></li>
 <li class='category'><a href='/bowtie/categories/metajson/'>metajson (2)</a></li>
-<li class='category'><a href='/bowtie/categories/midgen/'>midgen (9)</a></li>
+<li class='category'><a href='/bowtie/categories/midgen/'>midgen (10)</a></li>
 <li class='category'><a href='/bowtie/categories/midgenrc/'>midgenrc (2)</a></li>
+<li class='category'><a href='/bowtie/categories/mro/'>mro (1)</a></li>
 <li class='category'><a href='/bowtie/categories/octopress/'>octopress (1)</a></li>
 <li class='category'><a href='/bowtie/categories/use-ok/'>use_ok (1)</a></li>
 
