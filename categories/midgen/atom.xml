@@ -4,7 +4,7 @@
   <title><![CDATA[Category: midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-23T14:16:29+00:00</updated>
+  <updated>2014-03-23T18:18:23+00:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -152,7 +152,7 @@ Perl::MinimumVersion::Fast
 
 <ul>
 <li>Installed &ndash; found in <strong>@INC</strong> not in the distribution we are scanning.</li>
-<li>Version &ndash; found in module include within distribution ( ues Module::Name 0.123; )</li>
+<li>Version &ndash; found in module includes within your distribution ( use Module::Name 0.123; )</li>
 </ul>
 
 
