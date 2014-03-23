@@ -122,7 +122,7 @@
 
 <h3><a href="https://github.com/kevindawson/App-Midgen/issues/6">issue #6</a>.</h3>
 
-<p>When doing a check for the minimum perl version that should be specified in the ToolChain.</p>
+<p>When checking for the minimum perl version, each module in a distribution is checked in turn and the highest requirement returned. The blame ( explicit|syntax|external ) is available to check. The following typical code snippet causes confusion.</p>
 
 <figure class='code'><figcaption><span>Code snippet showing a typical usage of MRO::Compact </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -146,13 +146,15 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Both of these modules</p>
+<p>Both of these available modules have the same problem.</p>
 
 <pre><code>Perl::MinimumVersion
 Perl::MinimumVersion::Fast
 </code></pre>
 
 <p>Think that finding <strong>require mro</strong> syntax, means that the perl-minversion should be set to perl 5.010000</p>
+
+<p>NB. <code>perlmin .</code> or <code>perlmin-fast lib/module/name</code></p>
 
 <h4>Why this is stupid?</h4>
 
@@ -185,9 +187,11 @@ Perl::MinimumVersion::Fast
 </ul>
 
 
-<p>The following is the result of <code>midgen -f mi</code></p>
+<p>The following is the result of <code>midgen -f mi</code> showing meta-1.x format
+<img src="/bowtie/images/010-midgen_001.png" title="midgen -f mi" ></p>
 
-<p><img src="/bowtie/images/010_midgen_0.31_05.png"></p>
+<p>The following is the result of <code>midgen -f metajson</code> showing meta-2.x format
+<img src="/bowtie/images/010-midgen_002.png" title="midgen -f metajson" ></p>
 
 <p>nb: midgen v0.31_05 in GitHub</p>
 
