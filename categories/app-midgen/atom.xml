@@ -4,7 +4,7 @@
   <title><![CDATA[Category: App::Midgen | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/app-midgen/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-23T18:24:54+00:00</updated>
+  <updated>2014-03-24T18:09:25+00:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -84,7 +84,7 @@ Perl::MinimumVersion::Fast
 
 <p><blockquote><p>The &ldquo;mro&rdquo; namespace provides several utilities for dealing with method resolution order and method caching in general in Perl 5.9.5 and higher.</p></p><p><p>This module provides those interfaces for earlier versions of Perl (back to 5.6.0 anyways).</p></p><p><p>It is a harmless no-op to use this module on 5.9.5+. That is to say, code which properly uses MRO::Compat will work unmodified on both older Perls and 5.9.5+.</p></p><p><p>If you&rsquo;re writing a piece of software that would like to use the parts of 5.9.5+&rsquo;s mro:: interfaces that are supported here, and you want compatibility with older Perls, this is the module for you.</p><footer><strong>MRO::Compat</strong> <cite>POD <a href="https://metacpan.org/pod/MRO::Compat#DESCRIPTION">https://metacpan.org/pod/MRO::Compat#DESCRIPTION</a></cite></footer></blockquote></p>
 
-<p>Many thanks to the #toolchain for showing me the light.</p>
+<p>Many thanks to ribasushi++ for showing me the light.</p>
 
 <h3>The Catch</h3>
 
