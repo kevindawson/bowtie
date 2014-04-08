@@ -4,7 +4,7 @@
   <title><![CDATA[Category: UseModule | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/usemodule/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-24T18:09:25+00:00</updated>
+  <updated>2014-04-08T20:54:51+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -12,6 +12,393 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Announcing App::Midgen v0.32]]></title>
+    <link href="http://kevindawson.github.io/bowtie/2014/03/29/app-midgen-011/"/>
+    <updated>2014-03-29T14:40:00+00:00</updated>
+    <id>http://kevindawson.github.io/bowtie/2014/03/29/app-midgen-011</id>
+    <content type="html"><![CDATA[<h2>So what’s new?</h2>
+
+<ul>
+<li>Follow the meta-2 phase-requirements naming.</li>
+<li>The ablity to recast phase-requirements.</li>
+</ul>
+
+
+<h3>Plus theres more</h3>
+
+<ul>
+<li>App::Midgen v0.30 which was a refactor to support Perl 5.8.x</li>
+</ul>
+
+
+<p>A Couple of other blogs that now make sense to share with you</p>
+
+<ul>
+<li><a href="/2014/02/16/app-midgen-009/">midgen 0.28 plus</a>
+
+<ul>
+<li>Flowchart showing logic for RuntimeRecommends</li>
+<li>An enhancement to output infile to include Installed files</li>
+</ul>
+</li>
+<li><a href="/2014/03/22/app-midgen-010/">mro &ndash; MRO::Compat catch</a>
+
+<ul>
+<li><a href="https://github.com/kevindawson/App-Midgen/issues/6">issue #6</a>.</li>
+<li>The Catch</li>
+</ul>
+</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<h3>Follow the meta-2 phase-requirements naming.</h3>
+
+<p>All internals now follow the meta-2 phase-requirements naming as and where applicable for clarity. This rewrite has enabled midgen to do more as it now collates more info as it scans a dist.</p>
+
+<p>The following table is here as a reminder only.</p>
+
+<div>
+  <style>
+     table {
+        border: 2px solid black;
+        font-size: 90%;             
+      }
+      table th {
+        font-weight: bold;
+        background-color: gray;
+        text-align: center;
+        border: 2px solid black;
+      }
+      table th,td {
+        padding: 4px 5px;
+                border: 1px solid black;
+      }
+  </style>
+</div>
+
+
+
+
+<table>
+    <tr>
+        <th>Meta-2</th>
+        <th>Meta-1.x</th>
+    </tr>
+  <tr>
+    <td>RuntimeRequires</td>
+    <td>requires</td>
+  </tr>
+  <tr>
+    <td>RuntimeRecommends</td>
+    <td>recommends</td>
+  </tr>
+  <tr>
+    <td>TestRequires</td>
+    <td>test_requires</td>
+  </tr>
+  <tr>
+    <td>TestSuggests</td>
+    <td>recommends</td>
+  </tr>
+  <tr>
+    <td>DevelopeRequires</td>
+    <td>recommends</td>
+  </tr>
+</table>
+
+
+<p></p></p>
+
+<h3>Now some examples</h3>
+
+<p>The following data snippets show the use of the phase-requirements being stored by each scanner that finds a match.</p>
+
+<ul>
+<li>Infiles shows the following
+
+<ul>
+<li>file found in</li>
+<li>version found by scanner ( use Module::Name 1.01 (); )</li>
+<li>scanner that found it</li>
+<li>phase being checked</li>
+</ul>
+</li>
+</ul>
+
+
+<h4>a core module</h4>
+
+<p>{% codeblock Core Module &ndash; Errno lang:perl %}</p>
+
+<pre><code>Errno                       {
+    corelist   1,
+    count      1,
+    infiles    [
+        [0] [
+            [0] "/lib/HTTP/Tiny.pm",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "RuntimeRequires"
+        ]
+    ],
+    prereqs    "RuntimeRequires"
+},
+</code></pre>
+
+<p>{% endcodeblock %}
+nb. no version number shown as part of perl</p>
+
+<h4>a dual-life module</h4>
+
+<p>{% codeblock dual-life Module &ndash; Compress::Zlib lang:perl %}</p>
+
+<pre><code>Compress::Zlib              {
+    corelist       1,
+    count          1,
+    distribution   "IO-Compress",
+    dual_life      1,
+    infiles        [
+        [0] [
+            [0] "/lib/inc/Module/Install.pm",
+            [1] 0,
+            [2] "App::Midgen::Role::Eval",
+            [3] "RuntimeRecommends"
+        ]
+    ],
+    prereqs        "RuntimeRecommends",
+    version        2.064
+},
+</code></pre>
+
+<p>{% endcodeblock %}
+nb. distribution module found is is shown also.</p>
+
+<h4>a module</h4>
+
+<p>{% codeblock Module IO::Socket::SSL lang:perl %}</p>
+
+<pre><code>IO::Socket::SSL             {
+    corelist   0,
+    count      3,
+    infiles    [
+        [0] [
+            [0] "/lib/HTTP/Tiny.pm",
+            [1] 0,
+            [2] "App::Midgen::Role::Eval",
+            [3] "RuntimeRecommends"
+        ],
+        [1] [
+            [0] "/lib/HTTP/Tiny.pm",
+            [1] 1.42,
+            [2] "Perl::PrereqScanner",
+            [3] "RuntimeRequires"
+        ],
+        [2] [
+            [0] "t/210_live_ssl.t",
+            [1] 1.56,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ]
+    ],
+    prereqs    "RuntimeRecommends",
+    version    1.979
+},
+</code></pre>
+
+<p>{% endcodeblock %}
+nb. due to the order they run in RuntimeRecommends takes precedent in the following example.</p>
+
+<p><code>App::Midgen::Role::Eval</code> is an on-going development so dose not always manage to extract version, as identifying is the higher priority in the first instance.</p>
+
+<p>If you want to see all the modules found use verbose output <code>midgen -v</code></p>
+
+<p>Suggest you consider redirecting STDERR which will take advantage of Data-Printer output.
+<code>perl
+ANSI_COLORS_DISABLED=1 midgen -v 2&gt;data.txt
+</code></p>
+
+<h3>The ablity to recast phase-requirements</h3>
+
+<p>What the F### you say is that and why do we need it!</p>
+
+<p>{% codeblock Can you spot the error lang:perl %}</p>
+
+<pre><code>YAML::Tiny                  {
+    corelist   0,
+    count      8,
+    infiles    [
+        [0] [
+            [0] "/lib/Module/Install/Metadata.pm",
+            [1] 0,
+            [2] "App::Midgen::Role::Eval",
+            [3] "RuntimeRecommends"
+        ],
+        [1] [
+            [0] "/lib/Module/Install/Metadata.pm",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "RuntimeRequires"
+        ],
+        [2] [
+            [0] "/lib/Module/Install/Admin/Metadata.pm",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "RuntimeRequires"
+        ],
+        [3] [
+            [0] "/lib/inc/Module/Install.pm",
+            [1] 0,
+            [2] "App::Midgen::Role::Eval",
+            [3] "RuntimeRecommends"
+        ],
+        [4] [
+            [0] "t/27_build_requires_and_include.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ],
+        [5] [
+            [0] "t/30_build_subdirs.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ],
+        [6] [
+            [0] "t/31_add_metadata.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ],
+        [7] [
+            [0] "t/10_test.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ]
+    ],
+    prereqs    "RuntimeRecommends",
+    version    1.62
+}
+</code></pre>
+
+<p>{% endcodeblock %}</p>
+
+<ul>
+<li>look at the infile sections
+
+<ul>
+<li>ignore 4-7 as they are t/</li>
+<li>0-1 resolves to 0</li>
+</ul>
+</li>
+</ul>
+
+
+<p>so we end up with</p>
+
+<ul>
+<li>0 &ndash; RuntimeRecommends ( /lib/Module/Install/Metadata.pm )</li>
+<li>2 &ndash; RuntimeRequires ( /lib/Module/Install/Admin/Metadata.pm )</li>
+<li>3 &ndash; RuntimeRecommends ( /lib/inc/Module/Install.pm )</li>
+</ul>
+
+
+<p>thus YAML::Tiny in this case should be RuntimeRequires</p>
+
+<h4>re-cast RuntimeRecommends &ndash;> RuntimeRequires</h4>
+
+<p>So added a huristic catch, which barfs a warning, and corrects the error by redefining <code>prereqs</code></p>
+
+<ul>
+<li>ignore t/</li>
+<li>ignore Perl::PrereqScanner scans if a previous exists for the same file</li>
+<li>if no previous re-cast to RuntimeRequires</li>
+</ul>
+
+
+<p>As 2 &ndash; is from /lib/Module/Install/Admin/Metadata.pm it needs to be re-cast to RuntimeRequires</p>
+
+<p><code>Info: re-cast module YAML::Tiny to RuntimeRequires</code></p>
+
+<p>{% codeblock Showing recast prereqs => RuntimeRequires lang:perl %}</p>
+
+<pre><code>YAML::Tiny                  {
+    corelist   0,
+    count      8,
+    infiles    [
+        [0] [
+            [0] "/lib/Module/Install/Metadata.pm",
+            [1] 0,
+            [2] "App::Midgen::Role::Eval",
+            [3] "RuntimeRecommends"
+        ],
+        [1] [
+            [0] "/lib/Module/Install/Metadata.pm",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "RuntimeRequires"
+        ],
+        [2] [
+            [0] "/lib/Module/Install/Admin/Metadata.pm",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "RuntimeRequires"
+        ],
+        [3] [
+            [0] "/lib/inc/Module/Install.pm",
+            [1] 0,
+            [2] "App::Midgen::Role::Eval",
+            [3] "RuntimeRecommends"
+        ],
+        [4] [
+            [0] "t/27_build_requires_and_include.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ],
+        [5] [
+            [0] "t/30_build_subdirs.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ],
+        [6] [
+            [0] "t/31_add_metadata.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ],
+        [7] [
+            [0] "t/10_test.t",
+            [1] 0,
+            [2] "Perl::PrereqScanner",
+            [3] "TestRequires"
+        ]
+    ],
+    prereqs    "RuntimeRequires",
+    version    1.62
+}
+</code></pre>
+
+<p>{% endcodeblock %}
+This issues was found whilst doing some reviews on Module::Install now it is under the #toolchain.</p>
+
+<h3>re-cast to TestRequires</h3>
+
+<p>Plus there is also a re-cast to TestRequires from TestSuggests.</p>
+
+<p>works in a similarly way :)</p>
+
+<p><code>__END__</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Announcing App::Midgen v0.28]]></title>
@@ -57,62 +444,39 @@
 
 <p>Checking for the following, extracting module name and version strings.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>A selection of what UseModule supports </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="n">use_module</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">x</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'><span class="n">require_module</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;);</span>
-</span><span class='line'><span class="n">use_package_optimistically</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">x</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span><span class="sr">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span><span class="k">my</span> <span class="nv">$abc</span> <span class="o">=</span> <span class="n">use_module</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">x</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'><span class="k">my</span> <span class="nv">$abc</span> <span class="o">=</span> <span class="n">use_package_optimistically</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">x</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span><span class="sr">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span><span class="nv">$abc</span> <span class="o">=</span> <span class="n">use_module</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">x</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'><span class="nv">$abc</span> <span class="o">=</span> <span class="n">use_package_optimistically</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="n">x</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span><span class="sr">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span><span class="k">return</span> <span class="n">use_module</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">x</span><span class="p">,</span><span class="n">xx</span> <span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'><span class="k">return</span> <span class="n">use_package_optimisticall</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Module::</span><span class="n">Name</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">x</span><span class="o">.</span><span class="n">xx</span> <span class="p">)</span><span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="o">&gt;</span><span class="k">new</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="p">;</span> <span class="p">);</span><span class="sr">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span><span class="k">my</span> <span class="nv">$HAVE_MOOSE</span> <span class="o">=</span> <span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock A selection of what UseModule supports lang:perl %}
+use_module(&ldquo;Module::Name&rdquo;, x.xx)&ndash;>new( &hellip; );
+require_module( &lsquo;Module::Name&rsquo;);
+use_package_optimistically(&ldquo;Module::Name&rdquo;, x.xx)&ndash;>new( &hellip; );</p>
+
+<p>my $abc = use_module(&ldquo;Module::Name&rdquo;, x.xx)&ndash;>new( &hellip; );
+my $abc = use_package_optimistically(&ldquo;Module::Name&rdquo;, x.xx)&ndash;>new( &hellip; );</p>
+
+<p>$abc = use_module(&ldquo;Module::Name&rdquo;, x.xx)&ndash;>new( &hellip; );
+$abc = use_package_optimistically(&ldquo;Module::Name&rdquo;, x.xx)&ndash;>new( &hellip; );</p>
+
+<p>return use_module( &lsquo;Module::Name&rsquo;, x,xx )&ndash;>new( &hellip; );
+return use_package_optimisticall( &lsquo;Module::Name&rsquo;, x.xx )&ndash;>new( &hellip; );</p>
+
+<p>my $HAVE_MOOSE = eval { require Moose; 1; };
+{% endcodeblock %}</p>
 
 <p>We also support the prefix <code>Module::Runtime::...</code> in the above.</p>
 
 <h4>Eval now supports try</h4>
 
 <p>Eval is not realy a new scanner, it&rsquo;s just come of age with block and <strong>try</strong> support.
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>A selection of what Eval supports </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nb">eval</span> <span class="p">{</span><span class="k">use</span> <span class="nn">Test::Kwalitee::</span><span class="n">Extra</span> <span class="mf">0.000007</span><span class="p">};</span>
-</span><span class='line'><span class="nb">eval</span> <span class="p">{</span><span class="k">use</span> <span class="n">Moo</span> <span class="mf">1.002</span><span class="p">;</span> <span class="mi">1</span><span class="p">;};</span>
-</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">no</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
-</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span> <span class="p">};</span>
-</span><span class='line'><span class="k">my</span> <span class="nv">$HAVE_MOOSE</span> <span class="o">=</span> <span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span><span class="sr">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span><span class="n">try</span> <span class="p">{</span> <span class="nb">no</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
-</span><span class='line'><span class="n">try</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span> <span class="p">};</span>
-</span><span class='line'><span class="k">my</span> <span class="nv">$HAVE_MOOSE</span> <span class="o">=</span> <span class="n">try</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock A selection of what Eval supports lang:perl %}
+eval {use Test::Kwalitee::Extra 0.000007};
+eval {use Moo 1.002; 1;};
+eval { no Moose; 1; };
+eval { require Moose };
+my $HAVE_MOOSE = eval { require Moose; 1; };</p>
+
+<p>try { no Moose; 1; };
+try { require Moose };
+my $HAVE_MOOSE = try { require Moose; 1; };
+{% endcodeblock %}</p>
 
 <p>Bug: Catch for postfix <strong>if</strong>, Fixed</p>
 
@@ -150,129 +514,69 @@ internals: {
 
 <p><code>midgen --format eumm</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format eumm </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use strict;
-</span><span class='line'>use warnings;
-</span><span class='line'>use ExtUtils::MakeMaker 6.68;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>WriteMakefile(
-</span><span class='line'>   &lsquo;NAME&rsquo; => &lsquo;Class::Accessor::Grouped&rsquo;,
-</span><span class='line'>   &lsquo;VERSION_FROM&rsquo; => &lsquo;lib/Class/Accessor/Grouped.pm&rsquo;,
-</span><span class='line'>   &lsquo;ABSTRACT_FROM&rsquo; => &lsquo;lib/Class/Accessor/Grouped.pm&rsquo;,
-</span><span class='line'>   &lsquo;AUTHOR&rsquo; => &lsquo;&hellip;&rsquo;,
-</span><span class='line'>   &lsquo;LICENSE&rsquo; => &lsquo;perl&rsquo;,
-</span><span class='line'>   &lsquo;BUILD_REQUIRES&rsquo; => {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>  'ExtUtils::MakeMaker' =&gt; '6.68'
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   },
-</span><span class='line'>   &lsquo;CONFIGURE_REQUIRES&rsquo; => {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>  'ExtUtils::MakeMaker' =&gt; '6.68'
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   },
-</span><span class='line'>   &lsquo;MIN_PERL_VERSION&rsquo; => &lsquo;5.010&rsquo;,
-</span><span class='line'>   &lsquo;PREREQ_PM&rsquo; => {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>   'Class::XSAccessor' =&gt; '1.19',
-</span><span class='line'>   'MRO::Compat'       =&gt; '0.12',
-</span><span class='line'>   'Module::Runtime'   =&gt; '0.014',
-</span><span class='line'>   'Sub::Name'         =&gt; '0.05',
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   },
-</span><span class='line'>   &lsquo;TEST_REQUIRES&rsquo; => {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>   'Test::Exception'        =&gt; '0.32',
-</span><span class='line'>   'Test::More'             =&gt; '1.001002',
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   },
-</span><span class='line'>   &lsquo;META_MERGE&rsquo; => {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>  'meta-spec' =&gt; { 'version' =&gt; '2' },
-</span><span class='line'>  'prereqs' =&gt; {
-</span><span class='line'>     'test' =&gt; {
-</span><span class='line'>        'suggests' =&gt; {
-</span><span class='line'>            'Devel::Hide'         =&gt; '0.0009',
-</span><span class='line'>            'Package::Stash'      =&gt; '0.36',
-</span><span class='line'>            'Pod::Coverage'       =&gt; '0.23',
-</span><span class='line'>            'Test::CheckManifest' =&gt; '1.28',
-</span><span class='line'>            'Test::NoTabs'        =&gt; '1.3',
-</span><span class='line'>            'Test::Pod'           =&gt; '1.48',
-</span><span class='line'>            'Test::Pod::Coverage' =&gt; '1.08',
-</span><span class='line'>            'Test::Spelling'      =&gt; '0.19',
-</span><span class='line'>            'Test::Strict'        =&gt; '0.22',
-</span><span class='line'>        }
-</span><span class='line'>     }
-</span><span class='line'>  },
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   },
-</span><span class='line'>)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Output Format eumm %}
+use strict;
+use warnings;
+use ExtUtils::MakeMaker 6.68;</p>
+
+<p>WriteMakefile(
+   &lsquo;NAME&rsquo; => &lsquo;Class::Accessor::Grouped&rsquo;,
+   &lsquo;VERSION_FROM&rsquo; => &lsquo;lib/Class/Accessor/Grouped.pm&rsquo;,
+   &lsquo;ABSTRACT_FROM&rsquo; => &lsquo;lib/Class/Accessor/Grouped.pm&rsquo;,
+   &lsquo;AUTHOR&rsquo; => &lsquo;&hellip;&rsquo;,
+   &lsquo;LICENSE&rsquo; => &lsquo;perl&rsquo;,
+   &lsquo;BUILD_REQUIRES&rsquo; => {</p>
+
+<pre><code>  'ExtUtils::MakeMaker' =&gt; '6.68'
+</code></pre>
+
+<p>   },
+   &lsquo;CONFIGURE_REQUIRES&rsquo; => {</p>
+
+<pre><code>  'ExtUtils::MakeMaker' =&gt; '6.68'
+</code></pre>
+
+<p>   },
+   &lsquo;MIN_PERL_VERSION&rsquo; => &lsquo;5.010&rsquo;,
+   &lsquo;PREREQ_PM&rsquo; => {</p>
+
+<pre><code>   'Class::XSAccessor' =&gt; '1.19',
+   'MRO::Compat'       =&gt; '0.12',
+   'Module::Runtime'   =&gt; '0.014',
+   'Sub::Name'         =&gt; '0.05',
+</code></pre>
+
+<p>   },
+   &lsquo;TEST_REQUIRES&rsquo; => {</p>
+
+<pre><code>   'Test::Exception'        =&gt; '0.32',
+   'Test::More'             =&gt; '1.001002',
+</code></pre>
+
+<p>   },
+   &lsquo;META_MERGE&rsquo; => {</p>
+
+<pre><code>  'meta-spec' =&gt; { 'version' =&gt; '2' },
+  'prereqs' =&gt; {
+     'test' =&gt; {
+        'suggests' =&gt; {
+            'Devel::Hide'         =&gt; '0.0009',
+            'Package::Stash'      =&gt; '0.36',
+            'Pod::Coverage'       =&gt; '0.23',
+            'Test::CheckManifest' =&gt; '1.28',
+            'Test::NoTabs'        =&gt; '1.3',
+            'Test::Pod'           =&gt; '1.48',
+            'Test::Pod::Coverage' =&gt; '1.08',
+            'Test::Spelling'      =&gt; '0.19',
+            'Test::Strict'        =&gt; '0.22',
+        }
+     }
+  },
+</code></pre>
+
+<p>   },
+)
+{% endcodeblock %}</p>
 
 <h4>metajson</h4>
 
@@ -280,95 +584,52 @@ internals: {
 
 <p><code>midgen --format metajson</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format metajson </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>   &ldquo;prereqs&rdquo; : {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>  "runtime" : {
-</span><span class='line'>     "requires" : {
-</span><span class='line'>        "Module::Runtime" : "0.014",
-</span><span class='line'>        "perl" : "5.010",
-</span><span class='line'>     },
-</span><span class='line'>     "suggests" : {...},
-</span><span class='line'>     "recommends" : {
-</span><span class='line'>        "Class::XSAccessor" : "1.19",
-</span><span class='line'>        "MRO::Compat" : "0.12",
-</span><span class='line'>        "Sub::Name" : "0.05",
-</span><span class='line'>     }
-</span><span class='line'>  "test" : {
-</span><span class='line'>     "requires" : {
-</span><span class='line'>        "Test::Exception" : "0.32",
-</span><span class='line'>        "Test::More" : "1.001002",
-</span><span class='line'>     },
-</span><span class='line'>     "suggests" : {
-</span><span class='line'>        "Devel::Hide" : "0.0009",
-</span><span class='line'>        "Package::Stash" : "0.36",
-</span><span class='line'>        "Pod::Coverage" : "0.23",
-</span><span class='line'>        "Test::CheckManifest" : "1.28",
-</span><span class='line'>        "Test::NoTabs" : "1.3",
-</span><span class='line'>        "Test::Pod" : "1.48",
-</span><span class='line'>        "Test::Pod::Coverage" : "1.08",
-</span><span class='line'>        "Test::Spelling" : "0.19",
-</span><span class='line'>        "Test::Strict" : "0.22",
-</span><span class='line'>     }
-</span><span class='line'>  }
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   }
-</span><span class='line'>   &ldquo;no_index&rdquo; : {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>  "directory" : [
-</span><span class='line'>     "inc",
-</span><span class='line'>     "t",
-</span><span class='line'>  ]
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   },
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Output Format metajson %}
+{
+   &ldquo;prereqs&rdquo; : {</p>
+
+<pre><code>  "runtime" : {
+     "requires" : {
+        "Module::Runtime" : "0.014",
+        "perl" : "5.010",
+     },
+     "suggests" : {...},
+     "recommends" : {
+        "Class::XSAccessor" : "1.19",
+        "MRO::Compat" : "0.12",
+        "Sub::Name" : "0.05",
+     }
+  "test" : {
+     "requires" : {
+        "Test::Exception" : "0.32",
+        "Test::More" : "1.001002",
+     },
+     "suggests" : {
+        "Devel::Hide" : "0.0009",
+        "Package::Stash" : "0.36",
+        "Pod::Coverage" : "0.23",
+        "Test::CheckManifest" : "1.28",
+        "Test::NoTabs" : "1.3",
+        "Test::Pod" : "1.48",
+        "Test::Pod::Coverage" : "1.08",
+        "Test::Spelling" : "0.19",
+        "Test::Strict" : "0.22",
+     }
+  }
+</code></pre>
+
+<p>   }
+   &ldquo;no_index&rdquo; : {</p>
+
+<pre><code>  "directory" : [
+     "inc",
+     "t",
+  ]
+</code></pre>
+
+<p>   },
+}
+{% endcodeblock %}</p>
 
 <h4>cpanfile</h4>
 
@@ -376,55 +637,32 @@ internals: {
 
 <p><code>midgen --format cpanfile</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format metajson </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>requires &lsquo;Module::Runtime&rsquo;, &lsquo;0.014&rsquo;;
-</span><span class='line'>requires &lsquo;perl&rsquo;,            &lsquo;5.010&rsquo;;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>recommends &lsquo;Class::XSAccessor&rsquo;, &lsquo;1.19&rsquo;;
-</span><span class='line'>recommends &lsquo;MRO::Compat&rsquo;,       &lsquo;0.12&rsquo;;
-</span><span class='line'>recommends &lsquo;Sub::Name&rsquo;,         &lsquo;0.05&rsquo;;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>on test => sub {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>requires 'Test::Exception',        '0.32';
-</span><span class='line'>requires 'Test::More',             '1.001002';
-</span><span class='line'>
-</span><span class='line'>suggests 'Devel::Hide',         '0.0009';
-</span><span class='line'>suggests 'Package::Stash',      '0.36';
-</span><span class='line'>suggests 'Pod::Coverage',       '0.23';
-</span><span class='line'>suggests 'Test::CheckManifest', '1.28';
-</span><span class='line'>suggests 'Test::NoTabs',        '1.3';
-</span><span class='line'>suggests 'Test::Pod',           '1.48';
-</span><span class='line'>suggests 'Test::Pod::Coverage', '1.08';
-</span><span class='line'>suggests 'Test::Spelling',      '0.19';
-</span><span class='line'>suggests 'Test::Strict',        '0.22';
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>};</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Output Format metajson %}
+requires &lsquo;Module::Runtime&rsquo;, &lsquo;0.014&rsquo;;
+requires &lsquo;perl&rsquo;,            &lsquo;5.010&rsquo;;</p>
+
+<p>recommends &lsquo;Class::XSAccessor&rsquo;, &lsquo;1.19&rsquo;;
+recommends &lsquo;MRO::Compat&rsquo;,       &lsquo;0.12&rsquo;;
+recommends &lsquo;Sub::Name&rsquo;,         &lsquo;0.05&rsquo;;</p>
+
+<p>on test => sub {</p>
+
+<pre><code>requires 'Test::Exception',        '0.32';
+requires 'Test::More',             '1.001002';
+
+suggests 'Devel::Hide',         '0.0009';
+suggests 'Package::Stash',      '0.36';
+suggests 'Pod::Coverage',       '0.23';
+suggests 'Test::CheckManifest', '1.28';
+suggests 'Test::NoTabs',        '1.3';
+suggests 'Test::Pod',           '1.48';
+suggests 'Test::Pod::Coverage', '1.08';
+suggests 'Test::Spelling',      '0.19';
+suggests 'Test::Strict',        '0.22';
+</code></pre>
+
+<p>};
+{% endcodeblock %}</p>
 
 <h4>infile</h4>
 
@@ -438,423 +676,214 @@ internals: {
 
 <p><strong>cons</strong> you might see some duplicates as some modules are found by more than one additional scanner.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format infile </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-<span class='line-number'>149</span>
-<span class='line-number'>150</span>
-<span class='line-number'>151</span>
-<span class='line-number'>152</span>
-<span class='line-number'>153</span>
-<span class='line-number'>154</span>
-<span class='line-number'>155</span>
-<span class='line-number'>156</span>
-<span class='line-number'>157</span>
-<span class='line-number'>158</span>
-<span class='line-number'>159</span>
-<span class='line-number'>160</span>
-<span class='line-number'>161</span>
-<span class='line-number'>162</span>
-<span class='line-number'>163</span>
-<span class='line-number'>164</span>
-<span class='line-number'>165</span>
-<span class='line-number'>166</span>
-<span class='line-number'>167</span>
-<span class='line-number'>168</span>
-<span class='line-number'>169</span>
-<span class='line-number'>170</span>
-<span class='line-number'>171</span>
-<span class='line-number'>172</span>
-<span class='line-number'>173</span>
-<span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-<span class='line-number'>178</span>
-<span class='line-number'>179</span>
-<span class='line-number'>180</span>
-<span class='line-number'>181</span>
-<span class='line-number'>182</span>
-<span class='line-number'>183</span>
-<span class='line-number'>184</span>
-<span class='line-number'>185</span>
-<span class='line-number'>186</span>
-<span class='line-number'>187</span>
-<span class='line-number'>188</span>
-<span class='line-number'>189</span>
-<span class='line-number'>190</span>
-<span class='line-number'>191</span>
-<span class='line-number'>192</span>
-<span class='line-number'>193</span>
-<span class='line-number'>194</span>
-<span class='line-number'>195</span>
-<span class='line-number'>196</span>
-<span class='line-number'>197</span>
-<span class='line-number'>198</span>
-<span class='line-number'>199</span>
-<span class='line-number'>200</span>
-<span class='line-number'>201</span>
-<span class='line-number'>202</span>
-<span class='line-number'>203</span>
-<span class='line-number'>204</span>
-<span class='line-number'>205</span>
-<span class='line-number'>206</span>
-<span class='line-number'>207</span>
-<span class='line-number'>208</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;hr />
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>&lt;hr />
-</span><span class='line'>
-</span><span class='line'>&lt;p> | AccessorGroups           | 0        | /t/lib/AccessorGroupsSubclass.pm |
-</span><span class='line'> | AccessorGroupsComp       | 0        | /t/component.t                   |
-</span><span class='line'> | AccessorGroupsParent     | 0        | /t/lib/AccessorGroups.pm         |
-</span><span class='line'> | AccessorGroupsRO         | 0        | /t/accessors_ro.t                |
-</span><span class='line'> | AccessorGroupsSubclass   | 0        | /t/accessors.t                   |
-</span><span class='line'> | AccessorGroupsSubclass   | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | AccessorGroupsSubclass   | 0        | /t/illegal_name.t                |
-</span><span class='line'> | AccessorGroupsWO         | 0        | /t/accessors_wo.t                |
-</span><span class='line'> | B                        | 0        | /t/accessors.t                   |
-</span><span class='line'> | B                        | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | B                        | 0        | /t/basic.t                       |
-</span><span class='line'> | B                        | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | BaseInheritedGroups      | 0        | /t/lib/SuperInheritedGroups.pm   |
-</span><span class='line'> | Carp                     | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsParent.pm   |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsRO.pm       |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsWO.pm       |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsComp.pm     |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/lib/ExtraInheritedGroups.pm   |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/lib/BaseInheritedGroups.pm    |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | Class::Accessor::Grouped | 0        | /t/lib/NotHashBased.pm           |
-</span><span class='line'> | Class::XSAccessor        | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Class::XSAccessor        | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Class::XSAccessor        | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | Class::XSAccessor        | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | Class::XSAccessor        | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | Config                   | 0        | /t/accessors_ro.t                |
-</span><span class='line'> | Config                   | 0        | /t/accessors_wo.t                |
-</span><span class='line'> | Data::Dumper             | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | Data::Dumper             | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Devel::Hide              | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | Devel::Hide              | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | ExtraInheritedGroups     | 0        | /t/inherited.t                   |
-</span><span class='line'> | File::Basename           | 0        | /t/strict.t                      |
-</span><span class='line'> | File::Basename           | 0        | /t/strict.t                      |
-</span><span class='line'> | File::Basename           | 0        | /t/warnings.t                    |
-</span><span class='line'> | File::Basename           | 0        | /t/warnings.t                    |
-</span><span class='line'> | File::Find               | 0        | /t/strict.t                      |
-</span><span class='line'> | File::Find               | 0        | /t/warnings.t                    |
-</span><span class='line'> | File::Find               | 0        | /t/warnings.t                    |
-</span><span class='line'> | File::Find               | 0        | /t/strict.t                      |
-</span><span class='line'> | File::Spec::Functions    | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | File::Spec::Functions    | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | File::Spec::Unix         | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | File::Spec::Unix         | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | FindBin                  | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | FindBin                  | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | MRO::Compat              | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | MRO::Compat              | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | MRO::Compat              | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | Module::Runtime          | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | NotHashBased             | 0        | /t/inherited.t                   |
-</span><span class='line'> | Package::Stash           | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | Package::Stash           | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | Pod::Coverage            | 0.14     | /t/pod_coverage.t                |
-</span><span class='line'> | Scalar::Util             | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | Sub::Name                | 0        | /t/illegal_name.t                |
-</span><span class='line'> | Sub::Name                | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Sub::Name                | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Sub::Name                | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | Sub::Name                | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | Sub::Name                | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | Sub::Name                | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | Sub::Name                | 0        | /t/illegal_name.t                |
-</span><span class='line'> | Sub::Name                | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | SuperInheritedGroups     | 0        | /t/inherited.t                   |
-</span><span class='line'> | Test::CheckManifest      | 0.09     | /t/manifest.t                    |
-</span><span class='line'> | Test::Exception          | 0        | /t/inherited.t                   |
-</span><span class='line'> | Test::Exception          | 0        | /t/component.t                   |
-</span><span class='line'> | Test::Exception          | 0        | /t/accessors_ro.t                |
-</span><span class='line'> | Test::Exception          | 0        | /t/accessors_wo.t                |
-</span><span class='line'> | Test::Exception          | 0        | /t/illegal_name.t                |
-</span><span class='line'> | Test::More               | 0        | /t/strict.t                      |
-</span><span class='line'> | Test::More               | 0        | /t/accessors_wo.t                |
-</span><span class='line'> | Test::More               | 0        | /t/component.t                   |
-</span><span class='line'> | Test::More               | 0        | /t/manifest.t                    |
-</span><span class='line'> | Test::More               | 0        | /t/manifest.t                    |
-</span><span class='line'> | Test::More               | 0        | /t/accessors.t                   |
-</span><span class='line'> | Test::More               | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | Test::More               | 0        | /t/pod_syntax.t                  |
-</span><span class='line'> | Test::More               | 0        | /t/pod_syntax.t                  |
-</span><span class='line'> | Test::More               | 0        | /t/pod_spelling.t                |
-</span><span class='line'> | Test::More               | 0        | /t/pod_spelling.t                |
-</span><span class='line'> | Test::More               | 0        | /t/basic.t                       |
-</span><span class='line'> | Test::More               | 0        | /t/style_no_tabs.t               |
-</span><span class='line'> | Test::More               | 0        | /t/style_no_tabs.t               |
-</span><span class='line'> | Test::More               | 0        | /t/warnings.t                    |
-</span><span class='line'> | Test::More               | 0        | /t/warnings.t                    |
-</span><span class='line'> | Test::More               | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | Test::More               | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | Test::More               | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | Test::More               | 0        | /t/inherited.t                   |
-</span><span class='line'> | Test::More               | 0        | /t/strict.t                      |
-</span><span class='line'> | Test::More               | 0        | /t/illegal_name.t                |
-</span><span class='line'> | Test::More               | 0        | /t/accessors_ro.t                |
-</span><span class='line'> | Test::More               | 0        | /t/pod_coverage.t                |
-</span><span class='line'> | Test::More               | 0        | /t/pod_coverage.t                |
-</span><span class='line'> | Test::NoTabs             | 0.03     | /t/style_no_tabs.t               |
-</span><span class='line'> | Test::Pod                | 1.00     | /t/pod_syntax.t                  |
-</span><span class='line'> | Test::Pod::Coverage      | 1.04     | /t/pod_coverage.t                |
-</span><span class='line'> | Test::Spelling           | 0.11     | /t/pod_spelling.t                |
-</span><span class='line'> | Test::Strict             | 0        | /t/strict.t                      |
-</span><span class='line'> | Test::Strict             | 0.05     | /t/warnings.t                    |
-</span><span class='line'> | base                     | 0        | /t/lib/ExtraInheritedGroups.pm   |
-</span><span class='line'> | base                     | 0        | /t/lib/NotHashBased.pm           |
-</span><span class='line'> | base                     | 0        | /t/lib/SuperInheritedGroups.pm   |
-</span><span class='line'> | base                     | 0        | /t/lib/BaseInheritedGroups.pm    |
-</span><span class='line'> | base                     | 0        | /t/lib/AccessorGroups.pm         |
-</span><span class='line'> | base                     | 0        | /t/lib/AccessorGroupsParent.pm   |
-</span><span class='line'> | base                     | 0        | /t/lib/AccessorGroupsSubclass.pm |
-</span><span class='line'> | base                     | 0        | /t/lib/AccessorGroupsComp.pm     |
-</span><span class='line'> | base                     | 0        | /t/lib/AccessorGroupsRO.pm       |
-</span><span class='line'> | base                     | 0        | /t/lib/AccessorGroupsWO.pm       |
-</span><span class='line'> | base                     | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | constant                 | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | lib                      | 0        | /t/manifest.t                    |
-</span><span class='line'> | lib                      | 0        | /t/pod_syntax.t                  |
-</span><span class='line'> | lib                      | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | lib                      | 0        | /t/component.t                   |
-</span><span class='line'> | lib                      | 0        | /t/warnings.t                    |
-</span><span class='line'> | lib                      | 0        | /t/accessors.t                   |
-</span><span class='line'> | lib                      | 0        | /t/accessors_wo.t                |
-</span><span class='line'> | lib                      | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | lib                      | 0        | /t/pod_spelling.t                |
-</span><span class='line'> | lib                      | 0        | /t/inherited.t                   |
-</span><span class='line'> | lib                      | 0        | /t/accessors_ro.t                |
-</span><span class='line'> | lib                      | 0        | /t/illegal_name.t                |
-</span><span class='line'> | lib                      | 0        | /t/pod_coverage.t                |
-</span><span class='line'> | lib                      | 0        | /t/strict.t                      |
-</span><span class='line'> | lib                      | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | mro                      | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | strict                   | 0        | /t/pod_spelling.t                |
-</span><span class='line'> | strict                   | 0        | /t/lib/ExtraInheritedGroups.pm   |
-</span><span class='line'> | strict                   | 0        | /t/manifest.t                    |
-</span><span class='line'> | strict                   | 0        | /t/accessors.t                   |
-</span><span class='line'> | strict                   | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | strict                   | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | strict                   | 0        | /t/lib/AccessorGroupsComp.pm     |
-</span><span class='line'> | strict                   | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | strict                   | 0        | /t/lib/SuperInheritedGroups.pm   |
-</span><span class='line'> | strict                   | 0        | /t/basic.t                       |
-</span><span class='line'> | strict                   | 0        | /t/pod_syntax.t                  |
-</span><span class='line'> | strict                   | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | strict                   | 0        | /t/style_no_tabs.t               |
-</span><span class='line'> | strict                   | 0        | /t/lib/AccessorGroupsWO.pm       |
-</span><span class='line'> | strict                   | 0        | /t/warnings.t                    |
-</span><span class='line'> | strict                   | 0        | /t/lib/AccessorGroupsRO.pm       |
-</span><span class='line'> | strict                   | 0        | /t/component.t                   |
-</span><span class='line'> | strict                   | 0        | /t/lib/NotHashBased.pm           |
-</span><span class='line'> | strict                   | 0        | /t/inherited.t                   |
-</span><span class='line'> | strict                   | 0        | /t/lib/BaseInheritedGroups.pm    |
-</span><span class='line'> | strict                   | 0        | /t/lib/AccessorGroupsParent.pm   |
-</span><span class='line'> | strict                   | 0        | /t/lib/AccessorGroups.pm         |
-</span><span class='line'> | strict                   | 0        | /t/lib/AccessorGroupsSubclass.pm |
-</span><span class='line'> | strict                   | 0        | /t/strict.t                      |
-</span><span class='line'> | strict                   | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | strict                   | 0        | /t/accessors_wo.t                |
-</span><span class='line'> | strict                   | 0        | /t/accessors_ro.t                |
-</span><span class='line'> | strict                   | 0        | /t/illegal_name.t                |
-</span><span class='line'> | strict                   | 0        | /t/pod_coverage.t                |
-</span><span class='line'> | warnings                 | 0        | /t/warnings.t                    |
-</span><span class='line'> | warnings                 | 0        | /t/illegal_name.t                |
-</span><span class='line'> | warnings                 | 0        | /t/accessors.t                   |
-</span><span class='line'> | warnings                 | 0        | /t/manifest.t                    |
-</span><span class='line'> | warnings                 | 0        | /t/pod_syntax.t                  |
-</span><span class='line'> | warnings                 | 0        | /t/accessors_xs_cachedwarn.t     |
-</span><span class='line'> | warnings                 | 0        | /t/lib/NotHashBased.pm           |
-</span><span class='line'> | warnings                 | 0        | /t/lib/SuperInheritedGroups.pm   |
-</span><span class='line'> | warnings                 | 0        | /t/basic.t                       |
-</span><span class='line'> | warnings                 | 0        | /t/lib/BaseInheritedGroups.pm    |
-</span><span class='line'> | warnings                 | 0        | /t/style_no_tabs.t               |
-</span><span class='line'> | warnings                 | 0        | /t/lib/AccessorGroupsRO.pm       |
-</span><span class='line'> | warnings                 | 0        | /lib/Class/Accessor/Grouped.pm   |
-</span><span class='line'> | warnings                 | 0        | /t/clean_namespace.t             |
-</span><span class='line'> | warnings                 | 0        | /t/lib/AccessorGroupsComp.pm     |
-</span><span class='line'> | warnings                 | 0        | /t/component.t                   |
-</span><span class='line'> | warnings                 | 0        | /t/lib/AccessorGroupsWO.pm       |
-</span><span class='line'> | warnings                 | 0        | /t/lib/AccessorGroups.pm         |
-</span><span class='line'> | warnings                 | 0        | /t/lib/AccessorGroupsParent.pm   |
-</span><span class='line'> | warnings                 | 0        | /t/lib/AccessorGroupsSubclass.pm |
-</span><span class='line'> | warnings                 | 0        | /t/pod_spelling.t                |
-</span><span class='line'> | warnings                 | 0        | /t/accessors_ro.t                |
-</span><span class='line'> | warnings                 | 0        | /t/strict.t                      |
-</span><span class='line'> | warnings                 | 0        | /t/accessors_pp.t                |
-</span><span class='line'> | warnings                 | 0        | /t/lib/ExtraInheritedGroups.pm   |
-</span><span class='line'> | warnings                 | 0        | /t/inherited.t                   |
-</span><span class='line'> | warnings                 | 0        | /t/accessors_xs.t                |
-</span><span class='line'> | warnings                 | 0        | /t/accessors_wo.t                |
-</span><span class='line'> | warnings                 | 0        | /t/pod_coverage.t                |&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;hr />
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Output Format infile %}</p>
+
+<hr />
+
+
+
+<hr />
+
+<p> | AccessorGroups           | 0        | /t/lib/AccessorGroupsSubclass.pm |
+ | AccessorGroupsComp       | 0        | /t/component.t                   |
+ | AccessorGroupsParent     | 0        | /t/lib/AccessorGroups.pm         |
+ | AccessorGroupsRO         | 0        | /t/accessors_ro.t                |
+ | AccessorGroupsSubclass   | 0        | /t/accessors.t                   |
+ | AccessorGroupsSubclass   | 0        | /t/accessors_xs_cachedwarn.t     |
+ | AccessorGroupsSubclass   | 0        | /t/illegal_name.t                |
+ | AccessorGroupsWO         | 0        | /t/accessors_wo.t                |
+ | B                        | 0        | /t/accessors.t                   |
+ | B                        | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | B                        | 0        | /t/basic.t                       |
+ | B                        | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | BaseInheritedGroups      | 0        | /t/lib/SuperInheritedGroups.pm   |
+ | Carp                     | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsParent.pm   |
+ | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsRO.pm       |
+ | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsWO.pm       |
+ | Class::Accessor::Grouped | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Class::Accessor::Grouped | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Class::Accessor::Grouped | 0        | /t/lib/AccessorGroupsComp.pm     |
+ | Class::Accessor::Grouped | 0        | /t/lib/ExtraInheritedGroups.pm   |
+ | Class::Accessor::Grouped | 0        | /t/lib/BaseInheritedGroups.pm    |
+ | Class::Accessor::Grouped | 0        | /t/accessors_pp.t                |
+ | Class::Accessor::Grouped | 0        | /t/accessors_pp.t                |
+ | Class::Accessor::Grouped | 0        | /t/clean_namespace.t             |
+ | Class::Accessor::Grouped | 0        | /t/accessors_xs.t                |
+ | Class::Accessor::Grouped | 0        | /t/accessors_xs.t                |
+ | Class::Accessor::Grouped | 0        | /t/lib/NotHashBased.pm           |
+ | Class::XSAccessor        | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Class::XSAccessor        | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Class::XSAccessor        | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | Class::XSAccessor        | 0        | /t/accessors_xs.t                |
+ | Class::XSAccessor        | 0        | /t/accessors_xs.t                |
+ | Config                   | 0        | /t/accessors_ro.t                |
+ | Config                   | 0        | /t/accessors_wo.t                |
+ | Data::Dumper             | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | Data::Dumper             | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Devel::Hide              | 0        | /t/accessors_pp.t                |
+ | Devel::Hide              | 0        | /t/accessors_pp.t                |
+ | ExtraInheritedGroups     | 0        | /t/inherited.t                   |
+ | File::Basename           | 0        | /t/strict.t                      |
+ | File::Basename           | 0        | /t/strict.t                      |
+ | File::Basename           | 0        | /t/warnings.t                    |
+ | File::Basename           | 0        | /t/warnings.t                    |
+ | File::Find               | 0        | /t/strict.t                      |
+ | File::Find               | 0        | /t/warnings.t                    |
+ | File::Find               | 0        | /t/warnings.t                    |
+ | File::Find               | 0        | /t/strict.t                      |
+ | File::Spec::Functions    | 0        | /t/accessors_xs.t                |
+ | File::Spec::Functions    | 0        | /t/accessors_pp.t                |
+ | File::Spec::Unix         | 0        | /t/accessors_pp.t                |
+ | File::Spec::Unix         | 0        | /t/accessors_xs.t                |
+ | FindBin                  | 0        | /t/accessors_pp.t                |
+ | FindBin                  | 0        | /t/accessors_xs.t                |
+ | MRO::Compat              | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | MRO::Compat              | 0        | /t/clean_namespace.t             |
+ | MRO::Compat              | 0        | /t/clean_namespace.t             |
+ | Module::Runtime          | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | NotHashBased             | 0        | /t/inherited.t                   |
+ | Package::Stash           | 0        | /t/clean_namespace.t             |
+ | Package::Stash           | 0        | /t/clean_namespace.t             |
+ | Pod::Coverage            | 0.14     | /t/pod_coverage.t                |
+ | Scalar::Util             | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | Sub::Name                | 0        | /t/illegal_name.t                |
+ | Sub::Name                | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Sub::Name                | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Sub::Name                | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | Sub::Name                | 0        | /t/accessors_xs.t                |
+ | Sub::Name                | 0        | /t/accessors_xs.t                |
+ | Sub::Name                | 0        | /t/accessors_pp.t                |
+ | Sub::Name                | 0        | /t/illegal_name.t                |
+ | Sub::Name                | 0        | /t/accessors_pp.t                |
+ | SuperInheritedGroups     | 0        | /t/inherited.t                   |
+ | Test::CheckManifest      | 0.09     | /t/manifest.t                    |
+ | Test::Exception          | 0        | /t/inherited.t                   |
+ | Test::Exception          | 0        | /t/component.t                   |
+ | Test::Exception          | 0        | /t/accessors_ro.t                |
+ | Test::Exception          | 0        | /t/accessors_wo.t                |
+ | Test::Exception          | 0        | /t/illegal_name.t                |
+ | Test::More               | 0        | /t/strict.t                      |
+ | Test::More               | 0        | /t/accessors_wo.t                |
+ | Test::More               | 0        | /t/component.t                   |
+ | Test::More               | 0        | /t/manifest.t                    |
+ | Test::More               | 0        | /t/manifest.t                    |
+ | Test::More               | 0        | /t/accessors.t                   |
+ | Test::More               | 0        | /t/accessors_xs_cachedwarn.t     |
+ | Test::More               | 0        | /t/pod_syntax.t                  |
+ | Test::More               | 0        | /t/pod_syntax.t                  |
+ | Test::More               | 0        | /t/pod_spelling.t                |
+ | Test::More               | 0        | /t/pod_spelling.t                |
+ | Test::More               | 0        | /t/basic.t                       |
+ | Test::More               | 0        | /t/style_no_tabs.t               |
+ | Test::More               | 0        | /t/style_no_tabs.t               |
+ | Test::More               | 0        | /t/warnings.t                    |
+ | Test::More               | 0        | /t/warnings.t                    |
+ | Test::More               | 0        | /t/accessors_pp.t                |
+ | Test::More               | 0        | /t/clean_namespace.t             |
+ | Test::More               | 0        | /t/accessors_xs.t                |
+ | Test::More               | 0        | /t/inherited.t                   |
+ | Test::More               | 0        | /t/strict.t                      |
+ | Test::More               | 0        | /t/illegal_name.t                |
+ | Test::More               | 0        | /t/accessors_ro.t                |
+ | Test::More               | 0        | /t/pod_coverage.t                |
+ | Test::More               | 0        | /t/pod_coverage.t                |
+ | Test::NoTabs             | 0.03     | /t/style_no_tabs.t               |
+ | Test::Pod                | 1.00     | /t/pod_syntax.t                  |
+ | Test::Pod::Coverage      | 1.04     | /t/pod_coverage.t                |
+ | Test::Spelling           | 0.11     | /t/pod_spelling.t                |
+ | Test::Strict             | 0        | /t/strict.t                      |
+ | Test::Strict             | 0.05     | /t/warnings.t                    |
+ | base                     | 0        | /t/lib/ExtraInheritedGroups.pm   |
+ | base                     | 0        | /t/lib/NotHashBased.pm           |
+ | base                     | 0        | /t/lib/SuperInheritedGroups.pm   |
+ | base                     | 0        | /t/lib/BaseInheritedGroups.pm    |
+ | base                     | 0        | /t/lib/AccessorGroups.pm         |
+ | base                     | 0        | /t/lib/AccessorGroupsParent.pm   |
+ | base                     | 0        | /t/lib/AccessorGroupsSubclass.pm |
+ | base                     | 0        | /t/lib/AccessorGroupsComp.pm     |
+ | base                     | 0        | /t/lib/AccessorGroupsRO.pm       |
+ | base                     | 0        | /t/lib/AccessorGroupsWO.pm       |
+ | base                     | 0        | /t/clean_namespace.t             |
+ | constant                 | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | lib                      | 0        | /t/manifest.t                    |
+ | lib                      | 0        | /t/pod_syntax.t                  |
+ | lib                      | 0        | /t/accessors_xs_cachedwarn.t     |
+ | lib                      | 0        | /t/component.t                   |
+ | lib                      | 0        | /t/warnings.t                    |
+ | lib                      | 0        | /t/accessors.t                   |
+ | lib                      | 0        | /t/accessors_wo.t                |
+ | lib                      | 0        | /t/accessors_xs.t                |
+ | lib                      | 0        | /t/pod_spelling.t                |
+ | lib                      | 0        | /t/inherited.t                   |
+ | lib                      | 0        | /t/accessors_ro.t                |
+ | lib                      | 0        | /t/illegal_name.t                |
+ | lib                      | 0        | /t/pod_coverage.t                |
+ | lib                      | 0        | /t/strict.t                      |
+ | lib                      | 0        | /t/accessors_pp.t                |
+ | mro                      | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | strict                   | 0        | /t/pod_spelling.t                |
+ | strict                   | 0        | /t/lib/ExtraInheritedGroups.pm   |
+ | strict                   | 0        | /t/manifest.t                    |
+ | strict                   | 0        | /t/accessors.t                   |
+ | strict                   | 0        | /t/accessors_xs_cachedwarn.t     |
+ | strict                   | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | strict                   | 0        | /t/lib/AccessorGroupsComp.pm     |
+ | strict                   | 0        | /t/accessors_pp.t                |
+ | strict                   | 0        | /t/lib/SuperInheritedGroups.pm   |
+ | strict                   | 0        | /t/basic.t                       |
+ | strict                   | 0        | /t/pod_syntax.t                  |
+ | strict                   | 0        | /t/clean_namespace.t             |
+ | strict                   | 0        | /t/style_no_tabs.t               |
+ | strict                   | 0        | /t/lib/AccessorGroupsWO.pm       |
+ | strict                   | 0        | /t/warnings.t                    |
+ | strict                   | 0        | /t/lib/AccessorGroupsRO.pm       |
+ | strict                   | 0        | /t/component.t                   |
+ | strict                   | 0        | /t/lib/NotHashBased.pm           |
+ | strict                   | 0        | /t/inherited.t                   |
+ | strict                   | 0        | /t/lib/BaseInheritedGroups.pm    |
+ | strict                   | 0        | /t/lib/AccessorGroupsParent.pm   |
+ | strict                   | 0        | /t/lib/AccessorGroups.pm         |
+ | strict                   | 0        | /t/lib/AccessorGroupsSubclass.pm |
+ | strict                   | 0        | /t/strict.t                      |
+ | strict                   | 0        | /t/accessors_xs.t                |
+ | strict                   | 0        | /t/accessors_wo.t                |
+ | strict                   | 0        | /t/accessors_ro.t                |
+ | strict                   | 0        | /t/illegal_name.t                |
+ | strict                   | 0        | /t/pod_coverage.t                |
+ | warnings                 | 0        | /t/warnings.t                    |
+ | warnings                 | 0        | /t/illegal_name.t                |
+ | warnings                 | 0        | /t/accessors.t                   |
+ | warnings                 | 0        | /t/manifest.t                    |
+ | warnings                 | 0        | /t/pod_syntax.t                  |
+ | warnings                 | 0        | /t/accessors_xs_cachedwarn.t     |
+ | warnings                 | 0        | /t/lib/NotHashBased.pm           |
+ | warnings                 | 0        | /t/lib/SuperInheritedGroups.pm   |
+ | warnings                 | 0        | /t/basic.t                       |
+ | warnings                 | 0        | /t/lib/BaseInheritedGroups.pm    |
+ | warnings                 | 0        | /t/style_no_tabs.t               |
+ | warnings                 | 0        | /t/lib/AccessorGroupsRO.pm       |
+ | warnings                 | 0        | /lib/Class/Accessor/Grouped.pm   |
+ | warnings                 | 0        | /t/clean_namespace.t             |
+ | warnings                 | 0        | /t/lib/AccessorGroupsComp.pm     |
+ | warnings                 | 0        | /t/component.t                   |
+ | warnings                 | 0        | /t/lib/AccessorGroupsWO.pm       |
+ | warnings                 | 0        | /t/lib/AccessorGroups.pm         |
+ | warnings                 | 0        | /t/lib/AccessorGroupsParent.pm   |
+ | warnings                 | 0        | /t/lib/AccessorGroupsSubclass.pm |
+ | warnings                 | 0        | /t/pod_spelling.t                |
+ | warnings                 | 0        | /t/accessors_ro.t                |
+ | warnings                 | 0        | /t/strict.t                      |
+ | warnings                 | 0        | /t/accessors_pp.t                |
+ | warnings                 | 0        | /t/lib/ExtraInheritedGroups.pm   |
+ | warnings                 | 0        | /t/inherited.t                   |
+ | warnings                 | 0        | /t/accessors_xs.t                |
+ | warnings                 | 0        | /t/accessors_wo.t                |
+ | warnings                 | 0        | /t/pod_coverage.t                |</p>
+
+<hr />
+
+<p>{% endcodeblock %}</p>
 
 <p>NB: This is the only output format which displays the found version string at present.</p>
 

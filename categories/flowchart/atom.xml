@@ -4,7 +4,7 @@
   <title><![CDATA[Category: flowchart | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/flowchart/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-24T18:09:25+00:00</updated>
+  <updated>2014-04-08T20:54:51+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -37,7 +37,7 @@
 
 <p>The following is the current logic of what midgen is doing and the order it dose it in. All internals now follow the meta-2 phase-requirements naming as and where applicable for clarity.</p>
 
-<p><img src="/images/009-midgen_002.png"></p>
+<p>{% img /images/009-midgen_002.png %}</p>
 
 <h3>infile &ndash; Installed</h3>
 
@@ -52,7 +52,7 @@
 <p>In the end I opted for some color: Missing in red ether++</p>
 
 <p>The following is the result of <code>midgen -f infile</code>
-<img src="/images/009-midgen_003.png" title="midgen -f infile" ></p>
+{% img /images/009-midgen_003.png midgen -f infile %}</p>
 
 <p>NB: I always work with &lsquo;White on Black&rsquo;</p>
 

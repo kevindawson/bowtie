@@ -4,7 +4,7 @@
   <title><![CDATA[The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-24T18:09:25+00:00</updated>
+  <updated>2014-04-08T20:52:46+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -12,6 +12,556 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Announcing App::Midgen v0.32]]></title>
+    <link href="http://kevindawson.github.io/bowtie/2014/03/29/app-midgen-011/"/>
+    <updated>2014-03-29T14:40:00+00:00</updated>
+    <id>http://kevindawson.github.io/bowtie/2014/03/29/app-midgen-011</id>
+    <content type="html"><![CDATA[<h2>So what’s new?</h2>
+
+<ul>
+<li>Follow the meta-2 phase-requirements naming.</li>
+<li>The ablity to recast phase-requirements.</li>
+</ul>
+
+
+<h3>Plus theres more</h3>
+
+<ul>
+<li>App::Midgen v0.30 which was a refactor to support Perl 5.8.x</li>
+</ul>
+
+
+<p>A Couple of other blogs that now make sense to share with you</p>
+
+<ul>
+<li><a href="http://kevindawson.github.io/bowtie/2014/02/16/app-midgen-009/">midgen 0.28 plus</a>
+
+<ul>
+<li>Flowchart showing logic for RuntimeRecommends</li>
+<li>An enhancement to output infile to include Installed files</li>
+</ul>
+</li>
+<li><a href="http://kevindawson.github.io/bowtie/2014/03/22/app-midgen-010/">mro &ndash; MRO::Compat catch</a>
+
+<ul>
+<li><a href="https://github.com/kevindawson/App-Midgen/issues/6">issue #6</a>.</li>
+<li>The Catch</li>
+</ul>
+</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p><em>Food for thought, if we update our Modules, don&rsquo;t we want our users to use the current version, so should we not by default do the same with others Modules. Thus we always show the current version number, regardless.</em></p>
+
+<h3>Follow the meta-2 phase-requirements naming.</h3>
+
+<p>All internals now follow the meta-2 phase-requirements naming as and where applicable for clarity. This rewrite has enabled midgen to do more as it now collates more info as it scans a dist.</p>
+
+<p>The following table is here as a reminder only.</p>
+
+<div>
+  <style>
+     table {
+        border: 2px solid black;
+        font-size: 90%;             
+      }
+      table th {
+        font-weight: bold;
+        background-color: gray;
+        text-align: center;
+        border: 2px solid black;
+      }
+      table th,td {
+        padding: 4px 5px;
+                border: 1px solid black;
+      }
+  </style>
+</div>
+
+
+
+
+<table>
+    <tr>
+        <th>Meta-2</th>
+        <th>Meta-1.x</th>
+    </tr>
+  <tr>
+    <td>RuntimeRequires</td>
+    <td>requires</td>
+  </tr>
+  <tr>
+    <td>RuntimeRecommends</td>
+    <td>recommends</td>
+  </tr>
+  <tr>
+    <td>TestRequires</td>
+    <td>test_requires</td>
+  </tr>
+  <tr>
+    <td>TestSuggests</td>
+    <td>recommends</td>
+  </tr>
+  <tr>
+    <td>DevelopeRequires</td>
+    <td>recommends</td>
+  </tr>
+</table>
+
+
+<p></p></p>
+
+<h3>Now some examples</h3>
+
+<p>The following data snippets show the use of the phase-requirements being stored by each scanner that finds a match.</p>
+
+<ul>
+<li>Infiles shows the following
+
+<ul>
+<li>file found in</li>
+<li>version found by scanner ( use Module::Name 1.01 (); )</li>
+<li>scanner that found it</li>
+<li>phase being checked</li>
+</ul>
+</li>
+</ul>
+
+
+<h4>a core module</h4>
+
+<figure class='code'><figcaption><span>Core Module - Errno </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'>    <span class="n">Errno</span>                       <span class="p">{</span>
+</span><span class='line'>        <span class="n">corelist</span>   <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">count</span>      <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">infiles</span>    <span class="p">[</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/HTTP/Tiny.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRequires&quot;</span>
+</span><span class='line'>            <span class="p">]</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="n">prereqs</span>    <span class="s">&quot;RuntimeRequires&quot;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>nb. no version number shown as part of perl</p>
+
+<h4>a dual-life module</h4>
+
+<figure class='code'><figcaption><span>dual-life Module - Compress::Zlib </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'>    <span class="nn">Compress::</span><span class="n">Zlib</span>              <span class="p">{</span>
+</span><span class='line'>        <span class="n">corelist</span>       <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">count</span>          <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">distribution</span>   <span class="s">&quot;IO-Compress&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">dual_life</span>      <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">infiles</span>        <span class="p">[</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/inc/Module/Install.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;App::Midgen::Role::Eval&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRecommends&quot;</span>
+</span><span class='line'>            <span class="p">]</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="n">prereqs</span>        <span class="s">&quot;RuntimeRecommends&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">version</span>        <span class="mf">2.064</span>
+</span><span class='line'>    <span class="p">},</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>nb. distribution module found is is shown also.</p>
+
+<h4>a module</h4>
+
+<figure class='code'><figcaption><span>Module IO::Socket::SSL </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'>    <span class="nn">IO::Socket::</span><span class="n">SSL</span>             <span class="p">{</span>
+</span><span class='line'>        <span class="n">corelist</span>   <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">count</span>      <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">infiles</span>    <span class="p">[</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/HTTP/Tiny.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;App::Midgen::Role::Eval&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRecommends&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/HTTP/Tiny.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">1.42</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/210_live_ssl.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">1.56</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">]</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="n">prereqs</span>    <span class="s">&quot;RuntimeRecommends&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">version</span>    <span class="mf">1.979</span>
+</span><span class='line'>    <span class="p">},</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>nb. due to the order they run in RuntimeRecommends takes precedent in the following example.</p>
+
+<p> <code>App::Midgen::Role::Eval</code> is an on-going development so dose not always manage to extract version, as identifying is the higher priority in the first instance.</p>
+
+<p>If you want to see all the modules found use verbose output <code>midgen -v</code></p>
+
+<p>Suggest you consider redirecting STDERR which will take advantage of Data-Printer output.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="n">ANSI_COLORS_DISABLED</span><span class="o">=</span><span class="mi">1</span> <span class="n">midgen</span> <span class="o">-</span><span class="n">v</span> <span class="mi">2</span><span class="o">&gt;</span><span class="n">data</span><span class="o">.</span><span class="n">txt</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>The ablity to recast phase-requirements</h3>
+
+<p>What the F### you say is that and why do we need it!</p>
+
+<figure class='code'><figcaption><span>Can you spot the error </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'>    <span class="nn">YAML::</span><span class="n">Tiny</span>                  <span class="p">{</span>
+</span><span class='line'>        <span class="n">corelist</span>   <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">count</span>      <span class="mi">8</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">infiles</span>    <span class="p">[</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/Module/Install/Metadata.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;App::Midgen::Role::Eval&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRecommends&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/Module/Install/Metadata.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/Module/Install/Admin/Metadata.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/inc/Module/Install.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;App::Midgen::Role::Eval&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRecommends&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/27_build_requires_and_include.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/30_build_subdirs.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/31_add_metadata.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/10_test.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">]</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="n">prereqs</span>    <span class="s">&quot;RuntimeRecommends&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">version</span>    <span class="mf">1.62</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>look at the infile sections
+
+<ul>
+<li>ignore 4-7 as they are t/</li>
+<li>0-1 resolves to 0</li>
+</ul>
+</li>
+</ul>
+
+
+<p>so we end up with</p>
+
+<ul>
+<li>0 &ndash; RuntimeRecommends ( /lib/Module/Install/Metadata.pm )</li>
+<li>2 &ndash; RuntimeRequires ( /lib/Module/Install/Admin/Metadata.pm )</li>
+<li>3 &ndash; RuntimeRecommends ( /lib/inc/Module/Install.pm )</li>
+</ul>
+
+
+<p>thus YAML::Tiny in this case should be RuntimeRequires</p>
+
+<h4>re-cast RuntimeRecommends &ndash;> RuntimeRequires</h4>
+
+<p>So added a huristic catch, which barfs a warning, and corrects the error by redefining <code>prereqs</code></p>
+
+<ul>
+<li>ignore t/</li>
+<li>ignore Perl::PrereqScanner scans if a previous exists for the same file</li>
+<li>if no previous re-cast to RuntimeRequires</li>
+</ul>
+
+
+<p>As 2 &ndash; is from /lib/Module/Install/Admin/Metadata.pm it needs to be re-cast to RuntimeRequires</p>
+
+<p><code>Info: re-cast module YAML::Tiny to RuntimeRequires</code></p>
+
+<figure class='code'><figcaption><span>Showing recast prereqs => RuntimeRequires </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'>    <span class="nn">YAML::</span><span class="n">Tiny</span>                  <span class="p">{</span>
+</span><span class='line'>        <span class="n">corelist</span>   <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">count</span>      <span class="mi">8</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">infiles</span>    <span class="p">[</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/Module/Install/Metadata.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;App::Midgen::Role::Eval&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRecommends&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/Module/Install/Metadata.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/Module/Install/Admin/Metadata.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;/lib/inc/Module/Install.pm&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;App::Midgen::Role::Eval&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;RuntimeRecommends&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/27_build_requires_and_include.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/30_build_subdirs.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/31_add_metadata.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">],</span>
+</span><span class='line'>            <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="p">[</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="s">&quot;t/10_test.t&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="s">&quot;Perl::PrereqScanner&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="s">&quot;TestRequires&quot;</span>
+</span><span class='line'>            <span class="p">]</span>
+</span><span class='line'>        <span class="p">],</span>
+</span><span class='line'>        <span class="n">prereqs</span>    <span class="s">&quot;RuntimeRequires&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">version</span>    <span class="mf">1.62</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This issues was found whilst doing some reviews on Module::Install now it is under the #toolchain.</p>
+
+<h3>re-cast to TestRequires</h3>
+
+<p>Plus there is also a re-cast to TestRequires from TestSuggests.</p>
+
+<p>works in a similarly way :)</p>
+
+<p><code>__END__</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mro - MRO::Compat catch]]></title>

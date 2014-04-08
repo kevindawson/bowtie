@@ -4,7 +4,7 @@
   <title><![CDATA[Category: midgenrc | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/midgenrc/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-24T18:09:25+00:00</updated>
+  <updated>2014-04-08T20:54:51+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -39,7 +39,7 @@
 </ul>
 
 
-<p><img src="/images/midgen_001.png"></p>
+<p>{% img /images/midgen_001.png %}</p>
 
 <p>All version numbers from MetaCPAN</p>
 ]]></content>

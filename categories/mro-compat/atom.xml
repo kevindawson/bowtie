@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MRO::Compat | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/mro-compat/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-24T18:09:25+00:00</updated>
+  <updated>2014-04-08T20:54:51+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -35,38 +35,23 @@
 
 <p>When checking for the minimum perl version, each module in a distribution is checked in turn and the highest requirement returned. The blame ( explicit|syntax|external ) is available to check. The following typical code snippet causes confusion.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code snippet showing a typical usage of MRO::Compact </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1"># use Module::Runtime to work around the 5.8 require bugs</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="vg">$]</span> <span class="o">&amp;</span><span class="ow">lt</span><span class="p">;</span> <span class="mf">5.009_005</span><span class="p">)</span> <span class="p">{</span><span class="sr">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;</span><span class="nn">Module::Runtime::</span><span class="n">require_module</span><span class="p">(</span><span class="s">&#39;MRO::Compat&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="sr">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">else</span> <span class="p">{</span><span class="sr">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;</span><span class="nb">require</span> <span class="n">mro</span><span class="p">;</span>
-</span><span class='line'><span class="sr">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Code snippet showing a typical usage of MRO::Compact lang:perl %}
+BEGIN {
+  # use Module::Runtime to work around the 5.8 require bugs
+  if ($] &lt; 5.009_005) {</p>
+
+<pre><code>Module::Runtime::require_module('MRO::Compat');
+</code></pre>
+
+<p>  }
+  else {</p>
+
+<pre><code>require mro;
+</code></pre>
+
+<p>  }
+}
+{% endcodeblock %}</p>
 
 <p>Both of these available modules have the same problem.</p>
 
@@ -82,7 +67,15 @@ Perl::MinimumVersion::Fast
 
 <p>Because they both completely ignore the presence of <strong>MRO::Compat</strong> and it&rsquo;s use.</p>
 
-<p><blockquote><p>The &ldquo;mro&rdquo; namespace provides several utilities for dealing with method resolution order and method caching in general in Perl 5.9.5 and higher.</p></p><p><p>This module provides those interfaces for earlier versions of Perl (back to 5.6.0 anyways).</p></p><p><p>It is a harmless no-op to use this module on 5.9.5+. That is to say, code which properly uses MRO::Compat will work unmodified on both older Perls and 5.9.5+.</p></p><p><p>If you&rsquo;re writing a piece of software that would like to use the parts of 5.9.5+&rsquo;s mro:: interfaces that are supported here, and you want compatibility with older Perls, this is the module for you.</p><footer><strong>MRO::Compat</strong> <cite>POD <a href="https://metacpan.org/pod/MRO::Compat#DESCRIPTION">https://metacpan.org/pod/MRO::Compat#DESCRIPTION</a></cite></footer></blockquote></p>
+<p>{% blockquote MRO::Compat, POD <a href="https://metacpan.org/pod/MRO::Compat#DESCRIPTION">https://metacpan.org/pod/MRO::Compat#DESCRIPTION</a> %}
+The &ldquo;mro&rdquo; namespace provides several utilities for dealing with method resolution order and method caching in general in Perl 5.9.5 and higher.</p>
+
+<p>This module provides those interfaces for earlier versions of Perl (back to 5.6.0 anyways).</p>
+
+<p>It is a harmless no-op to use this module on 5.9.5+. That is to say, code which properly uses MRO::Compat will work unmodified on both older Perls and 5.9.5+.</p>
+
+<p>If you&rsquo;re writing a piece of software that would like to use the parts of 5.9.5+&rsquo;s mro:: interfaces that are supported here, and you want compatibility with older Perls, this is the module for you.
+{% endblockquote %}</p>
 
 <p>Many thanks to ribasushi++ for showing me the light.</p>
 
@@ -109,10 +102,10 @@ Perl::MinimumVersion::Fast
 
 
 <p>The following is the result of <code>midgen -f mi</code> showing meta-1.x format
-<img src="/images/010-midgen_001.png" title="midgen -f mi" ></p>
+{% img /images/010-midgen_001.png midgen -f mi %}</p>
 
 <p>The following is the result of <code>midgen -f metajson</code> showing meta-2.x format
-<img src="/images/010-midgen_002.png" title="midgen -f metajson" ></p>
+{% img /images/010-midgen_002.png midgen -f metajson %}</p>
 
 <p>nb: midgen v0.31_05 in GitHub</p>
 

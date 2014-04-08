@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Test::Requires | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/test-requires/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-03-24T18:09:25+00:00</updated>
+  <updated>2014-04-08T20:54:51+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -46,72 +46,38 @@
 
 <p><code>midgen --format infile</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output Format infile run against a test dist </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;hr /&gt;
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>&lt;hr /&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt; | Bar                   | 0.2      | /lib/Anamal.pm     |
-</span><span class='line'> | Carp::Always::Color   | 0        | /lib/Anamal.pm     |
-</span><span class='line'> | Compiler::Lexer       | 0        | /lib/Anamal.pm     |
-</span><span class='line'> | Data::Printer         | 0        | /lib/Anamal.pm     |
-</span><span class='line'> | Foo                   | 0.123456 | /lib/Anamal.pm     |
-</span><span class='line'> | Moo                   | 1.000    | /lib/Anamal.pm     |
-</span><span class='line'> | Moo                   | 0.999    | /lib/Plugin/Dog.pm |
-</span><span class='line'> | Moo                   | 0.888    | /lib/Plugin/Cat.pm |
-</span><span class='line'> | Params::Util          | 0        | /lib/Anamal.pm     |
-</span><span class='line'> | String::RewritePrefix | 0.005    | /lib/Anamal.pm     |
-</span><span class='line'> | Test::Mock::LWP       | 0        | /t/666-tmw.t       |
-</span><span class='line'> | Test::Mock::LWP       | 0        | /t/00.load.t       |
-</span><span class='line'> | Test::More            | 0        | /t/pod.t           |
-</span><span class='line'> | Test::More            | 0        | /t/pod-coverage.t  |
-</span><span class='line'> | Test::More            | 0        | /t/666-tmw.t       |
-</span><span class='line'> | Test::More            | 0        | /t/00.load.t       |
-</span><span class='line'> | Test::Pod             | 0        | /t/pod.t           |
-</span><span class='line'> | Test::Pod::Coverage   | 0        | /t/pod-coverage.t  |
-</span><span class='line'> | Types::Standard       | 0        | /lib/Anamal.pm     |
-</span><span class='line'> | X                     | 0        | /lib/Anamal.pm     |&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;hr /&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Output Format infile run against a test dist lang:text %}</p>
+
+<hr />
+
+
+
+<hr />
+
+<p> | Bar                   | 0.2      | /lib/Anamal.pm     |
+ | Carp::Always::Color   | 0        | /lib/Anamal.pm     |
+ | Compiler::Lexer       | 0        | /lib/Anamal.pm     |
+ | Data::Printer         | 0        | /lib/Anamal.pm     |
+ | Foo                   | 0.123456 | /lib/Anamal.pm     |
+ | Moo                   | 1.000    | /lib/Anamal.pm     |
+ | Moo                   | 0.999    | /lib/Plugin/Dog.pm |
+ | Moo                   | 0.888    | /lib/Plugin/Cat.pm |
+ | Params::Util          | 0        | /lib/Anamal.pm     |
+ | String::RewritePrefix | 0.005    | /lib/Anamal.pm     |
+ | Test::Mock::LWP       | 0        | /t/666-tmw.t       |
+ | Test::Mock::LWP       | 0        | /t/00.load.t       |
+ | Test::More            | 0        | /t/pod.t           |
+ | Test::More            | 0        | /t/pod-coverage.t  |
+ | Test::More            | 0        | /t/666-tmw.t       |
+ | Test::More            | 0        | /t/00.load.t       |
+ | Test::Pod             | 0        | /t/pod.t           |
+ | Test::Pod::Coverage   | 0        | /t/pod-coverage.t  |
+ | Types::Standard       | 0        | /lib/Anamal.pm     |
+ | X                     | 0        | /lib/Anamal.pm     |</p>
+
+<hr />
+
+<p>{% endcodeblock %}</p>
 
 <p>NB: this is the only output format which displays the found version string, because it just makes sense in this instance.
 Many thanks to ETHER along the way.</p>
@@ -122,7 +88,7 @@ Many thanks to ETHER along the way.</p>
 
 <p><code>midgen --format metajson</code></p>
 
-<p><img src="/images/007-metajson.png"></p>
+<p>{% img /images/007-metajson.png %}</p>
 
 <h3>Internal Scanner update</h3>
 
@@ -135,28 +101,21 @@ Many thanks to ETHER along the way.</p>
 <h4>Eval new scanner</h4>
 
 <p>Eval is not realy a new scanner, it&rsquo;s just come of age with block support.
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>A selection of what Eval supports </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nb">eval</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="k">use</span> <span class="nn">Test::Kwalitee::</span><span class="n">Extra</span> <span class="mf">0.000007</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;;</span>
-</span><span class='line'><span class="nb">eval</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="k">use</span> <span class="n">Moo</span> <span class="mf">1.002</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;;</span>
-</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">no</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
-</span><span class='line'><span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span> <span class="p">};</span>
-</span><span class='line'><span class="k">my</span> <span class="nv">$HAVE_MOOSE</span> <span class="o">=</span> <span class="nb">eval</span> <span class="p">{</span> <span class="nb">require</span> <span class="n">Moose</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock A selection of what Eval supports lang:perl %}
+eval &ldquo;use Test::Kwalitee::Extra 0.000007&rdquo;;
+eval &ldquo;use Moo 1.002; 1;&rdquo;;
+eval { no Moose; 1; };
+eval { require Moose };
+my $HAVE_MOOSE = eval { require Moose; 1; };
+{% endcodeblock %}</p>
 
 <h4>Test::Requires update</h4>
 
 <p>Support for barewords in Test::Requires scanner
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Now supports barewords in Test::Requires </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="n">Moo</span> <span class="p">};</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="n">Moose</span> <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">2.000</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock Now supports barewords in Test::Requires lang:perl %}
+use Test::Requires { Moo };
+use Test::Requires { Moose => &lsquo;2.000&rsquo; };
+{% endcodeblock %}</p>
 
 <h3>Finish off conversion to Type::Tiny</h3>
 
@@ -165,19 +124,17 @@ The Second part of the conversion from MooX::Types::MooseLike to Type::Tiny.</p>
 
 <p>So we have gone from this:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">MooX::Types::MooseLike::</span><span class="n">Base</span> <span class="sx">qw( InstanceOf )</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:perl %}
+use Moo::Role;
+use MooX::Types::MooseLike::Base qw( InstanceOf );
+{% endcodeblock %}</p>
 
 <p>To this:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Types::</span><span class="n">Standard</span> <span class="sx">qw( InstanceOf )</span><span class="p">;</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Moo::</span><span class="n">Role</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:perl %}
+use Types::Standard qw( InstanceOf );
+use Moo::Role;
+{% endcodeblock %}</p>
 
 <p>Many thanks to TOBYINK along the way.</p>
 
@@ -223,52 +180,37 @@ The Second part of the conversion from MooX::Types::MooseLike to Type::Tiny.</p>
 
 <p>Example 1</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of Test::Requires </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Pod</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Extra</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">1.46</span> <span class="p">};</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw[MIME::Types]</span><span class="p">;</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="sx">qw(IO::Handle::Util LWP::Protocol::http10)</span><span class="p">;</span>
-</span><span class='line'><span class="k">use</span> <span class="nn">Test::</span><span class="n">Requires</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test1</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
-</span><span class='line'>  <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Test::</span><span class="n">Test2</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">=&gt;</span> <span class="mf">2.02</span><span class="p">,</span>
-</span><span class='line'>  <span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Here&rsquo;s a selection of Test::Requires lang:perl %}
+use Test::Requires { &lsquo;Test::Pod&rsquo; => 1.46 };
+use Test::Requires { &lsquo;Test::Extra&rsquo; => 1.46 };
+use Test::Requires qw[MIME::Types];
+use Test::Requires qw(IO::Handle::Util LWP::Protocol::http10);
+use Test::Requires {
+  &ldquo;Test::Test1&rdquo; => &lsquo;1.01&rsquo;,
+  &lsquo;Test::Test2&rsquo; => 2.02,
+  };
+{% endcodeblock %}</p>
 
 <h4>Find modules in <strong>use_ok</strong> BEGIN blocks</h4>
 
 <p>Example 2</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&rsquo;s a selection of ues_ok in BEGIN block </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">BEGIN</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadKey</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">2.30</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Term::</span><span class="n">ReadLine</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.10</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsOne</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mf">1.01</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsTwo</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mf">2.02</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="p">);</span>
-</span><span class='line'>  <span class="n">use_ok</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="nn">Fred::</span><span class="n">BloggsThree</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="mf">3.03</span> <span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Here&rsquo;s a selection of ues_ok in BEGIN block lang:perl %}
+BEGIN {
+  use_ok( &lsquo;Term::ReadKey&rsquo;, &lsquo;2.30&rsquo; );
+  use_ok( &lsquo;Term::ReadLine&rsquo;, &lsquo;1.10&rsquo; );
+  use_ok( &lsquo;Fred::BloggsOne&rsquo;, &lsquo;1.01&rsquo; );
+  use_ok( &ldquo;Fred::BloggsTwo&rdquo;, &ldquo;2.02&rdquo; );
+  use_ok( &lsquo;Fred::BloggsThree&rsquo;, 3.03 );
+}
+{% endcodeblock %}</p>
 
 <h3>Supports <strong>suggests</strong> in <strong>on_test</strong> in cpanfile</h3>
 
 <pre><code>~/GitHub/Plack$ midgen -lf cpanfile
 </code></pre>
 
-<p><img src="/images/005-example-03.png"></p>
+<p>{% img /images/005-example-03.png %}</p>
 
 <ul>
 <li>The above shows <strong>requires</strong> from ( use, require, no, use_ok, &hellip; )</li>
