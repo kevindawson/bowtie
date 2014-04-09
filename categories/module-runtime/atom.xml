@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Module::Runtime | The Musings of a Dyslexic Technologist]]></title>
   <link href="http://kevindawson.github.io/bowtie/categories/module-runtime/atom.xml" rel="self"/>
   <link href="http://kevindawson.github.io/bowtie/"/>
-  <updated>2014-04-08T20:54:51+01:00</updated>
+  <updated>2014-04-10T00:13:19+01:00</updated>
   <id>http://kevindawson.github.io/bowtie/</id>
   <author>
     <name><![CDATA[bowtie]]></name>
@@ -178,7 +178,7 @@ nb. no version number shown as part of perl</p>
 </code></pre>
 
 <p>{% endcodeblock %}
-nb. distribution module found is is shown also.</p>
+nb. distribution module found in is shown also.</p>
 
 <h4>a module</h4>
 
